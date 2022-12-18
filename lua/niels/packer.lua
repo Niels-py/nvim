@@ -16,6 +16,11 @@ return require('packer').startup(function(use)
 	use { "catppuccin/nvim", as = "catppuccin" }
 
 	use {
+		'nvim-lualine/lualine.nvim',
+		requires = {'kyazdani42/nvim-web-devicons'}
+	}
+
+	use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
 			-- LSP Support
