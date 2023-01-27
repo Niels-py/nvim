@@ -8,8 +8,6 @@ return require('packer').startup(function(use)
         }
 
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-        use 'nvim-treesitter/playground'
-        use 'mbbill/undotree'
         use { 'catppuccin/nvim', as = 'catppuccin' }
 
         use {
@@ -41,7 +39,5 @@ return require('packer').startup(function(use)
 
         use 'numToStr/Comment.nvim'
         use 'm4xshen/autoclose.nvim'
-
         use 'tpope/vim-surround'
-
 end)
