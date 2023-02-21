@@ -38,6 +38,5 @@ return require('packer').startup(function(use)
         }
 
         use 'numToStr/Comment.nvim'
-        use 'm4xshen/autoclose.nvim'
         use 'tpope/vim-surround'
 end)

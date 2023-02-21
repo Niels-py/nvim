@@ -2,7 +2,7 @@ vim.opt.nu = true -- line numbers
 vim.opt.rnu = true -- relative line numbers
 
 -- tabwidth and smartindent
-local tabw = 8
+local tabw = 4
 vim.opt.tabstop = tabw
 vim.opt.softtabstop = tabw
 vim.opt.shiftwidth = tabw
@@ -23,10 +23,13 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 100
 
 vim.opt.colorcolumn = "80"
+
+-- no swapfile creation
+vim.opt.swapfile = false
