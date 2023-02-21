@@ -2,7 +2,7 @@ vim.opt.nu = true -- line numbers
 vim.opt.rnu = true -- relative line numbers
 
 -- tabwidth and smartindent
-local tabw = 8
+local tabw = 4
 vim.opt.tabstop = tabw
 vim.opt.softtabstop = tabw
 vim.opt.shiftwidth = tabw
