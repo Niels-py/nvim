@@ -1,35 +1,46 @@
-vim.opt.nu = true -- line numbers
-vim.opt.rnu = true -- relative line numbers
+local o = vim.opt
+
+o.nu = true -- line numbers
+o.rnu = true -- relative line numbers
 
 -- tabwidth and smartindent
 local tabw = 4
-vim.opt.tabstop = tabw
-vim.opt.softtabstop = tabw
-vim.opt.shiftwidth = tabw
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+o.tabstop = tabw
+o.softtabstop = tabw
+o.shiftwidth = tabw
+o.expandtab = true
+o.smartindent = true
 
-vim.opt.wrap = true -- text wrapping
+o.wrap = true -- text wrapping
 
 -- no swapfiles and undotree gets acsas to old changes in undodir
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+o.swapfile = false
+o.backup = false
+o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+o.undofile = true
 
 -- search settings
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+o.hlsearch = false
+o.incsearch = true
 
-vim.opt.termguicolors = true
+o.termguicolors = true
 
-vim.opt.scrolloff = 10
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+o.scrolloff = 10
+o.signcolumn = "yes"
+o.isfname:append("@-@")
 
-vim.opt.updatetime = 100
+o.updatetime = 100
 
-vim.opt.colorcolumn = "80"
+o.colorcolumn = "80"
 
 -- no swapfile creation
-vim.opt.swapfile = false
+o.swapfile = false
+
+-- folding
+o.foldenable = true
+o.foldmethod = "marker"
+
+-- spell checking
+o.spelllang = "en,de"
+o.spelloptions = "camel"
+o.spellsuggest = "best"
