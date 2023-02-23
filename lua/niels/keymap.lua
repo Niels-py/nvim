@@ -2,7 +2,7 @@ local key = vim.keymap.set
 
 vim.g.mapleader = " "
 
-key("n", "<leader>d", vim.cmd.Ex)
+key("n", "<leader>d", vim.cmd.NvimTreeToggle)
 key("v", "J", ":m '>+1<CR>gv=gv")
 key("v", "K", ":m '<-2<CR>gv=gv")
 
