@@ -1,10 +1,10 @@
 require('telescope').setup {
     defaults = {
         pickers = {
-    find_files = {
-      theme = "tokyonight",
-    }
-  },
+            find_files = {
+                theme = "tokyonight",
+            }
+        },
         vimgrep_arguments = {
             'rg',
             '--color=always',
