@@ -85,7 +85,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["barbecue.nvim"] = {
-    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0" },
+    config = { "\27LJ\2\nN\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\ntheme\15tokyonight\nsetup\rbarbecue\frequire\0" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -198,11 +198,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nielshaupt/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
-  },
-  ["vim-surround"] = {
-    loaded = true,
-    path = "/Users/nielshaupt/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
   }
 }
 
@@ -217,7 +212,7 @@ vim.cmd [[ packadd nvim-web-devicons ]]
 vim.cmd [[ packadd barbecue.nvim ]]
 
 -- Config for: barbecue.nvim
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
+try_loadstring("\27LJ\2\nN\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\ntheme\15tokyonight\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
 
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]

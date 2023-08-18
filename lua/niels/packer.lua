@@ -83,7 +83,7 @@ return require('packer').startup(function(use)
 
     use 'numToStr/Comment.nvim'
 
-    use 'tpope/vim-surround'
+    -- use 'tpope/vim-surround'
 
     use {
         'nvim-tree/nvim-tree.lua',
@@ -102,7 +102,9 @@ return require('packer').startup(function(use)
         },
         after = "nvim-web-devicons", -- keep this if you're using NvChad
         config = function()
-            require("barbecue").setup()
+            require("barbecue").setup {
+                theme = 'tokyonight',
+            }
         end,
     })
 
