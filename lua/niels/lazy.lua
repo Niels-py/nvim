@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-    { 
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
@@ -32,7 +32,7 @@ require('lazy').setup({
             vim.cmd([[colorscheme catppuccin]])
         end,
     },
-    
+
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
@@ -43,7 +43,7 @@ require('lazy').setup({
 
     { 'lukas-reineke/indent-blankline.nvim', lazy = false },
 
-    { 
+    {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         config = function()
@@ -53,7 +53,7 @@ require('lazy').setup({
                 ensure_installed = { "bash", "lua", "python" },
                 sync_install = false,
                 highlight = { enable = true },
-                indent = { enable = true },  
+                indent = { enable = true },
             })
         end,
     },
@@ -84,7 +84,7 @@ require('lazy').setup({
         lazy = false,
     },
 
-    { 
+    {
         'numToStr/Comment.nvim',
         lazy = false,
         opts = {},
@@ -113,13 +113,14 @@ require('lazy').setup({
         keys = {
             { "<leader>d", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
         },
-        config = {
+        opts = {
             view = { float = { enable = true } }
         }
     },
 
-    { 
+    {
         'iamcco/markdown-preview.nvim',
-        ft = { 'md' }, 
+        ft = { 'markdown' },
+        build = function() vim.fn["mkdp#util#install"]() end,
     },
 })

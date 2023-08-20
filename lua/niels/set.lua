@@ -39,3 +39,4 @@ o.swapfile = false
 -- folding
 o.foldenable = true
 o.foldmethod = "marker"
+vim.g.markdown_folding = 1
