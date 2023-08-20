@@ -30,3 +30,4 @@ key("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- tabs
 key("n", "<leader>t", vim.cmd.tabnew)
 key("n", "<leader>w", vim.cmd.tabclose)
+key("n", "<leader><tab>", vim.cmd.tabnext)

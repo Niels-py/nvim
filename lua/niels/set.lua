@@ -39,8 +39,3 @@ o.swapfile = false
 -- folding
 o.foldenable = true
 o.foldmethod = "marker"
-
--- spell checking
--- o.spelllang = "en,de"
--- o.spelloptions = "camel"
--- o.spellsuggest = "best"
