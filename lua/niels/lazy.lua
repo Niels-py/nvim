@@ -84,6 +84,8 @@ require('lazy').setup({
         lazy = false,
     },
 
+    { 'm4xshen/autoclose.nvim', lazy = false },
+
     {
         'numToStr/Comment.nvim',
         lazy = false,
