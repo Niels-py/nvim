@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',
@@ -9,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
@@ -48,7 +50,6 @@ require('lazy').setup({
         build = ':TSUpdate',
         config = function()
             local configs = require("nvim-treesitter.configs")
-
             configs.setup({
                 ensure_installed = { "bash", "lua", "python" },
                 sync_install = false,
@@ -69,22 +70,25 @@ require('lazy').setup({
 
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        branch = 'v3.x',
         dependencies = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},             -- Required
             {'williamboman/mason.nvim'},           -- Optional
             {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
             -- Autocompletion
             {'hrsh7th/nvim-cmp'},     -- Required
             {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
+            {
+                'L3MON4D3/LuaSnip',
+                tag = "v2.*",
+                build = "make install_jsregexp",
+            },     -- Required
         },
         lazy = false,
     },
 
-    { 'm4xshen/autoclose.nvim', lazy = false },
+    { 'm4xshen/autoclose.nvim', lazy = false, opts = {}},
 
     {
         'numToStr/Comment.nvim',
