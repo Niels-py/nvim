@@ -43,7 +43,7 @@ require('lazy').setup({
 
     { 'lewis6991/gitsigns.nvim', lazy = false, opts = {}},
 
-    { 'lukas-reineke/indent-blankline.nvim', lazy = false },
+    { "lukas-reineke/indent-blankline.nvim", event = "BufEnter *.*", opts = {} },
 
     {
         'nvim-treesitter/nvim-treesitter',
@@ -128,5 +128,16 @@ require('lazy').setup({
         'iamcco/markdown-preview.nvim',
         ft = { 'markdown' },
         build = function() vim.fn["mkdp#util#install"]() end,
+    },
+
+    {
+        'nvimdev/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+                -- config
+            }
+        end,
+        requires = {'nvim-tree/nvim-web-devicons'}
     },
 })
