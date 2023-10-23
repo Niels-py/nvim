@@ -131,6 +131,11 @@ require('lazy').setup({
     },
 
     {
+        'elkowar/yuck.vim',
+        ft = { 'yuck' },
+    },
+
+    {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
         config = function()
