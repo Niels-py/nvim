@@ -3,7 +3,7 @@ local o = vim.opt
 o.nu = true -- line numbers
 o.rnu = true -- relative line numbers
 
--- tabwidth and smartindent
+-- indent
 local tabw = 4
 o.tabstop = tabw
 o.softtabstop = tabw
