@@ -2,14 +2,12 @@ local key = vim.keymap.set
 
 vim.g.mapleader = " "
 
-key("n", "<leader>n", vim.cmd.NvimTreeToggle)
 key("v", "J", ":m '>+1<CR>gv=gv")
 key("v", "K", ":m '<-2<CR>gv=gv")
 
+-- better page up & down
 key("n", "<C-d>", "<C-d>zz")
 key("n", "<C-u>", "<C-u>zz")
-key("n", "n", "nzzzv")
-key("n", "N", "Nzzzv")
 
 -- copy & paste stuff
 key({ "n", "v" }, "<leader>y", [["+y]])
@@ -31,5 +29,9 @@ key("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- tabs
 key("n", "<leader>t", vim.cmd.tabnew)
 key("n", "<leader>w", vim.cmd.tabclose)
-key("n", "<tab>", vim.cmd.tabnext)
-key("n", "<S-tab>", vim.cmd.tabprevious)
+key("n", "<leader><tab>", vim.cmd.tabnext)
+key("n", "<leader><S-tab>", vim.cmd.tabprevious)
+
+-- file management
+key("n", "<leader>a", [[:e %:p:h/]])
+key("n", "<leader>n", vim.cmd.NvimTreeToggle)

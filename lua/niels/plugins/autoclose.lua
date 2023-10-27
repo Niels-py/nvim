@@ -1,5 +1,5 @@
 return {
-    'm4xshen/autoclose.nvim',
-    lazy = false,
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
     opts = {}
 }
