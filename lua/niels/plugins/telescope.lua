@@ -1,9 +1,19 @@
 return {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make'
+        }
+    },
     lazy = false,
     config = function ()
-        require('telescope').setup {
+
+        local actions = require('telescope.actions')
+        local telescope = require('telescope')
+
+        telescope.setup {
             defaults = {
                 vimgrep_arguments = {
                     'rg',
@@ -34,13 +44,24 @@ return {
                     "%.class", "%.pdf", "%.mkv", "%.mp4", "%.zip" },
                 borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
 
+                mappings = {
+                    i = {
+                        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+                        ["<C-j>"] = actions.move_selection_next, -- move to next result
+                        ["<Esc>"] = actions.close, -- close telescope on single hit of Escape
+                    }
+                }
+
             }
         }
 
+        telescope.load_extension("fzf")
+
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>f', builtin.find_files, {}) -- f for file
-        vim.keymap.set('n', '<leader>g', builtin.git_files, {}) -- g for git
-        vim.keymap.set('n', '<leader>o', builtin.treesitter, {})
-        
+        local key = vim.keymap
+
+        key.set('n', '<leader>f', builtin.find_files, { desc = "Fuzzy find files in cwd" }) -- f for file
+        key.set('n', '<leader>g', builtin.git_files, { desc = 'Find files in git repo' }) -- g for git
+        key.set('n', '<leader>o', builtin.treesitter, { desc = 'Find function or variable or something like that' })
     end,
 }
