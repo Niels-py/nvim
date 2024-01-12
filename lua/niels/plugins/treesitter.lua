@@ -14,17 +14,13 @@ return {
                 'rust',
                 'go',
                 'c',
-                'nix',
                 'html',
-                'javascript',
                 'json',
                 'markdown',
                 'markdown_inline',
                 'yaml',
-                'rust',
                 'cpp',
                 'css',
-                'sql'
             },
 
             sync_install = false,
