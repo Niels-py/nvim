@@ -1,7 +1,7 @@
 local o = vim.opt
 
-o.nu = true -- line numbers
-o.rnu = true -- relative line numbers
+o.number = true
+o.relativenumber = true
 
 -- indent
 local tabw = 4
@@ -43,3 +43,6 @@ vim.g.markdown_folding = 1
 
 -- terminal cursor should not change
 o.gcr = 'n-v-o:block,i-c:ver20,r-cr:hor20,o:hor50'
+
+-- to make obsidian.nvim happy
+o.conceallevel = 1

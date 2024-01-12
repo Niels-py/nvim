@@ -2,17 +2,14 @@ local key = vim.keymap.set
 
 vim.g.mapleader = " "
 
+-- moving selection on line up or down with line indent
 key("v", "J", ":m '>+1<CR>gv=gv")
 key("v", "K", ":m '<-2<CR>gv=gv")
-
--- better page up & down
-key("n", "<C-d>", "<C-d>zz")
-key("n", "<C-u>", "<C-u>zz")
 
 -- copy & paste stuff
 key({ "n", "v" }, "<leader>y", [["+y]])
 key("n", "<leader>Y", [["+Y]])
-key("x", "<leader>p", [["_dP]])
+key("n", "<leader>p", [["+p]])
 
 -- format (needs lsp)
 key("n", "<leader>F", vim.lsp.buf.format)
@@ -33,5 +30,5 @@ key("n", "<leader><tab>", vim.cmd.tabnext)
 key("n", "<leader><S-tab>", vim.cmd.tabprevious)
 
 -- file management
-key("n", "<leader>a", [[:e %:p:h/]])
-key("n", "<leader>n", vim.cmd.NvimTreeToggle)
+key("n", "<leader>a", [[:e %:p:h/]]) -- new file in dir of current file
+key("n", "<leader>e", [[:e .]]) -- open netrw

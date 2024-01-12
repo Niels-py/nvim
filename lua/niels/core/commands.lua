@@ -18,3 +18,6 @@ vim.api.nvim_create_user_command("Run", function()
     end
 end, {})
 
+vim.api.nvim_exec([[
+    autocmd TermOpen * setlocal nonumber norelativenumber
+]], false)
