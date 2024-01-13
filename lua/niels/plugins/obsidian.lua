@@ -21,7 +21,5 @@ return {
                 path = "~/Documents/notes",
             },
         },
-
-        -- see below for full list of options 👇
     },
 }

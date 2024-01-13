@@ -11,9 +11,13 @@ o.shiftwidth = tabw
 o.expandtab = true
 o.smartindent = true
 
-o.wrap = true -- text wrapping
+o.wrap = false -- text wrapping
 
--- no swapfiles and undotree gets acsas to old changes in undodir
+-- cursor highlight
+-- o.cursorcolumn = true
+o.cursorline = true
+
+-- no swapfiles and undotree gets access to old changes in undodir
 o.swapfile = false
 o.backup = false
 o.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -29,9 +33,7 @@ o.scrolloff = 10
 o.signcolumn = "yes"
 o.isfname:append("@-@")
 
-o.updatetime = 100
-
-o.colorcolumn = "80"
+-- o.colorcolumn = "80"
 
 -- no swapfile creation
 o.swapfile = false
