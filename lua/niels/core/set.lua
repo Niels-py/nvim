@@ -41,7 +41,6 @@ o.swapfile = false
 -- folding
 o.foldenable = true
 o.foldmethod = "marker"
-vim.g.markdown_folding = 1
 
 -- terminal cursor should not change
 o.gcr = 'n-v-o:block,i-c:ver20,r-cr:hor20,o:hor50'
