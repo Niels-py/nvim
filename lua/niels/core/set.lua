@@ -1,49 +1,53 @@
-local o = vim.opt
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-o.number = true
-o.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- indent
 local tabw = 4
-o.tabstop = tabw
-o.softtabstop = tabw
-o.shiftwidth = tabw
-o.expandtab = true
-o.smartindent = true
+vim.opt.tabstop = tabw
+vim.opt.softtabstop = tabw
+vim.opt.shiftwidth = tabw
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-o.wrap = false -- text wrapping
+vim.opt.wrap = false -- text wrapping
 
 -- cursor highlight
--- o.cursorcolumn = true
-o.cursorline = true
+-- vim.opt.cursorcolumn = true
+vim.opt.cursorline = true
 
 -- no swapfiles and undotree gets access to old changes in undodir
-o.swapfile = false
-o.backup = false
-o.undodir = os.getenv("HOME") .. "/.vim/undodir"
-o.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+-- clipboard
+vim.opt.clipboard = "unnamedplus"
 
 -- search settings
-o.hlsearch = false
-o.incsearch = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-o.termguicolors = true
+-- for colorthemes
+vim.opt.termguicolors = true
 
-o.scrolloff = 10
-o.signcolumn = "yes"
-o.isfname:append("@-@")
+vim.opt.scrolloff = 16
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
 
--- o.colorcolumn = "80"
-
--- no swapfile creation
-o.swapfile = false
+-- vim.opt.colorcolumn = "80"
 
 -- folding
-o.foldenable = true
-o.foldmethod = "marker"
+vim.opt.foldenable = true
+vim.opt.foldmethod = "marker"
 
 -- terminal cursor should not change
-o.gcr = 'n-v-o:block,i-c:ver20,r-cr:hor20,o:hor50'
+-- vim.opt.gcr = 'n-v-o:block,i-c:ver20,r-cr:hor20,o:hor50'
 
 -- to make obsidian.nvim happy
-o.conceallevel = 1
+vim.opt.conceallevel = 1
