@@ -5,11 +5,13 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make'
-        }
-    },
-    lazy = false,
-    config = function ()
+        },
+        "nvim-telescope/telescope-ui-select.nvim",
 
+        -- Useful for getting pretty icons, but requires a Nerd Font.
+        { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+    },
+    config = function()
         local actions = require('telescope.actions')
         local telescope = require('telescope')
 
@@ -47,21 +49,26 @@ return {
                 mappings = {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous, -- move to prev result
-                        ["<C-j>"] = actions.move_selection_next, -- move to next result
-                        ["<Esc>"] = actions.close, -- close telescope on single hit of Escape
+                        ["<C-j>"] = actions.move_selection_next,     -- move to next result
+                        ["<Esc>"] = actions.close,                   -- close telescope on single hit of Escape
                     }
                 }
 
-            }
+            },
+            extensions = {
+                ["ui-select"] = {
+                    require("telescope.themes").get_dropdown(),
+                },
+            },
         }
 
         telescope.load_extension("fzf")
+        telescope.load_extension("ui-select")
 
         local builtin = require('telescope.builtin')
         local key = vim.keymap
 
         key.set('n', '<leader>f', builtin.find_files, { desc = "Fuzzy find files in cwd" }) -- f for file
-        key.set('n', '<leader>g', builtin.git_files, { desc = 'Find files in git repo' }) -- g for git
         key.set('n', '<leader>o', builtin.treesitter, { desc = 'Find function or variable or something like that' })
     end,
 }
