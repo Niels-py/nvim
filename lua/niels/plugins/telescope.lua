@@ -62,8 +62,8 @@ return {
             },
         }
 
-        telescope.load_extension("fzf")
-        telescope.load_extension("ui-select")
+        pcall(require('telescope').load_extension, 'fzf')
+        pcall(require('telescope').load_extension, 'ui-select')
 
         local builtin = require('telescope.builtin')
         local key = vim.keymap
