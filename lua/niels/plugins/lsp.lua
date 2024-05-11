@@ -23,7 +23,7 @@ return {
 				map("gr", telescope.lsp_references, "Goto References")
 				map("gI", telescope.lsp_implementations, "Goto Implementation")
 				map("<leader>D", telescope.lsp_type_definitions, "Type Definition")
-				map("<leader>rn", vim.lsp.buf.rename, "Rename")
+				map("<leader>rn", vim.lsp.buf.rename, "change name")
 				map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 				map("K", vim.lsp.buf.hover, "Show Documentation for whats under the cursor")
 				map("<leader>d", vim.diagnostic.open_float, "shows diagnostic in float window")
