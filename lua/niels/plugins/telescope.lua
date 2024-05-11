@@ -60,15 +60,21 @@ return {
                     require("telescope.themes").get_dropdown(),
                 },
             },
+            pickers = {
+                find_files = {
+                    find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+                }
+            }
         }
 
         pcall(require('telescope').load_extension, 'fzf')
         pcall(require('telescope').load_extension, 'ui-select')
 
         local builtin = require('telescope.builtin')
-        local key = vim.keymap
+        local map = vim.keymap.set
 
-        key.set('n', '<leader>f', builtin.find_files, { desc = "Fuzzy find files in cwd" }) -- f for file
-        key.set('n', '<leader>o', builtin.treesitter, { desc = 'Find function or variable or something like that' })
+        map('n', '<leader>f', builtin.find_files, { desc = "Fuzzy find files in cwd" })
+        map('n', '<leader>o', builtin.treesitter, { desc = 'Find function or variable or something like that' })
+        map('n', '<leader>r', builtin.oldfiles, { desc = "Fuzzy find recently opend files"})
     end,
 }

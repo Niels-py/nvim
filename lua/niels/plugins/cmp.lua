@@ -16,7 +16,6 @@ return {
 
         local luasnip = require("luasnip")
 
-
         -- If you want insert `(` after select function or method item
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         cmp.event:on(
@@ -46,12 +45,6 @@ return {
                 }
             })
         })
-
-        require 'cmp'.setup {
-            sources = {
-                { name = 'nvim_lsp' }
-            }
-        }
 
         local lspkind = require("lspkind")
 
