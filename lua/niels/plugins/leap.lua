@@ -1,31 +1,27 @@
 return {
-    "ggandor/leap.nvim",
-    lazy = false,
-    dependencies = {
-        "tpope/vim-repeat",
-    },
-    config = function ()
+	"ggandor/leap.nvim",
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		"tpope/vim-repeat",
+	},
+	config = function()
+		local leap = require("leap")
 
-        local leap = require("leap")
-        
-        leap.case_sensitive = false
-        leap.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
-        leap.max_phase_one_targets = nil
-        leap.highlight_unlabeled_phase_one_targets = false
-        leap.max_highlighted_traversal_targets = 10
-        leap.substitute_chars = {}
-        leap.safe_labels = 'sfnut/SFNLHMUGTZ?'
-        leap.labels = 'sfnjklhodweimbuyvrgtaqpcxz/SFNJKLHODWEIMBUYVRGTAQPCXZ?'
-        leap.special_keys = {
-            next_target = '<enter>',
-            prev_target = '<tab>',
-            next_group = '<space>',
-            prev_group = '<tab>',
+		leap.case_sensitive = false
+		leap.equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" }
+		leap.max_phase_one_targets = nil
+		leap.highlight_unlabeled_phase_one_targets = false
+		leap.max_highlighted_traversal_targets = 10
+		leap.substitute_chars = {}
+		leap.safe_labels = "sfnut/SFNLHMUGTZ?"
+		leap.labels = "sfnjklhodweimbuyvrgtaqpcxz/SFNJKLHODWEIMBUYVRGTAQPCXZ?"
+		leap.special_keys = {
+			next_target = "<enter>",
+			prev_target = "<tab>",
+			next_group = "<space>",
+			prev_group = "<tab>",
+		}
 
-        }
-
-        leap.create_default_mappings()
-
-    end
-
+		leap.create_default_mappings()
+	end,
 }
