@@ -177,7 +177,8 @@ return {
 				button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
 				button("g", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
 				button("r", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
-				button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
+				button("n", "  open Oil", "<cmd>Oil<CR>"),
+				-- button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
 				button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
 				button("q", "󰅚  Quit", "<cmd>qa<CR>"),
 			},
@@ -197,6 +198,7 @@ return {
 
 		local config = {
 			layout = {
+				{ type = "padding", val = 4 },
 				header,
 				{ type = "padding", val = 2 },
 				section_mru,
