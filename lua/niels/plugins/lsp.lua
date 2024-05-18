@@ -79,6 +79,7 @@ return {
 					},
 				},
 			},
+			zls = {},
 			jdtls = {},
 
 			lua_ls = {

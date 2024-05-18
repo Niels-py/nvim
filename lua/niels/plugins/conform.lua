@@ -19,6 +19,8 @@ return {
 				css = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
+
+				zig = { "zigfmt" },
 			},
 			format_on_save = {
 				-- These options will be passe to conform.format()

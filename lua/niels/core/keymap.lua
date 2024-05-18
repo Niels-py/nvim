@@ -52,3 +52,49 @@ end, "open trouble loclist")
 local gs = require("gitsigns")
 map("]h", gs.next_hunk, "Next Hunk") -- hunk is a git change (or delete or add usw.)
 map("[h", gs.prev_hunk, "Prev Hunk")
+
+-- harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+map("<leader>a", function()
+	harpoon:list():add()
+end, "add buffer to harpoon list")
+map("<leader>e", function()
+	toggle_telescope(harpoon:list())
+end, "Open harpoon window")
+map("<leader>j", function()
+	harpoon:list():next()
+end, "jump to next harpoon buffer")
+map("<leader>k", function()
+	harpoon:list():prev()
+end, "jump to prev harpoon buffer")
+map("<leader>1", function()
+	harpoon:list():select(1)
+end, "jump to harpoon buffer 1")
+map("<leader>2", function()
+	harpoon:list():select(2)
+end, "jump to harpoon buffer 2")
+map("<leader>3", function()
+	harpoon:list():select(3)
+end, "jump to harpoon buffer 3")
+map("<leader>4", function()
+	harpoon:list():select(4)
+end, "jump to harpoon buffer 4")
