@@ -98,3 +98,15 @@ end, "jump to harpoon buffer 3")
 map("<leader>4", function()
 	harpoon:list():select(4)
 end, "jump to harpoon buffer 4")
+
+-- telescope
+local telescope = require("telescope")
+local builtin = require("telescope.builtin")
+
+map("<leader>f", builtin.find_files, "Fuzzy find files in cwd")
+map("<leader>t", builtin.treesitter, "Find function or variable or something like that")
+map("<leader>o", builtin.oldfiles, "Fuzzy find recently opend files")
+map("<leader>g", builtin.live_grep, "ripgrep in current buffer")
+map("<leader>h", builtin.help_tags, "lists help pages")
+map("<leader>m", telescope.extensions.media_files.media_files, "find media files (copy path on select)")
+map("<leader>z", telescope.extensions.zoxide.list, "find zoxide folders")
