@@ -24,6 +24,9 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- no mouse
+vim.opt.mouse = ""
+
 -- clipboard
 vim.opt.clipboard = "unnamedplus"
 
@@ -32,9 +35,6 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- for colorthemes
-vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 16
 vim.opt.signcolumn = "yes"
@@ -45,9 +45,6 @@ vim.opt.isfname:append("@-@")
 -- folding
 vim.opt.foldenable = true
 vim.opt.foldmethod = "marker"
-
--- terminal cursor should not change
--- vim.opt.gcr = 'n-v-o:block,i-c:ver20,r-cr:hor20,o:hor50'
 
 -- to make obsidian.nvim happy
 vim.opt.conceallevel = 1

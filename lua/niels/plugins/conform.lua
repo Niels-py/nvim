@@ -1,6 +1,18 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			-- Customize or remove this keymap to your liking
+			"<leader>F",
+			function()
+				require("conform").format({ async = true, lsp_fallback = true })
+			end,
+			mode = "",
+			desc = "Format buffer",
+		},
+	},
 	config = function()
 		local conform = require("conform")
 
@@ -13,6 +25,7 @@ return {
 				rust = { "rustfmt" },
 				toml = { "taplo" },
 				zig = { "zigfmt" },
+				json = { "jq" },
 			},
 			format_on_save = {
 				-- These options will be passe to conform.format()

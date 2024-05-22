@@ -7,7 +7,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selected line down" 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selected line up" })
 
 -- format (needs lsp)
-map("<leader>F", vim.lsp.buf.format, "formats code")
+map("<leader>F", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end, "formats code")
 
 -- clear highlight of search by pressing ESC
 map("<Esc>", "<cmd>nohlsearch<CR>")
@@ -109,7 +111,3 @@ map("<leader>o", builtin.oldfiles, "Fuzzy find recently opend files")
 map("<leader>g", builtin.live_grep, "ripgrep in current buffer")
 map("<leader>m", telescope.extensions.media_files.media_files, "find media files (copy path on select)")
 map("<leader>z", telescope.extensions.zoxide.list, "find zoxide folders")
-
--- lint
-local lint = require("lint")
-map("<leader>l", lint.try_lint, "Trigger linting for current file")
