@@ -12,14 +12,6 @@ return {
 				bash = { "beautysh" },
 				rust = { "rustfmt" },
 				toml = { "taplo" },
-
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier" },
-
 				zig = { "zigfmt" },
 			},
 			format_on_save = {
