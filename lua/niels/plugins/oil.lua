@@ -2,6 +2,17 @@ return {
 	"stevearc/oil.nvim",
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	keys = {
+		{
+
+			"<leader>n",
+			function()
+				require("oil").toggle_float()
+			end,
+			mode = "n",
+			desc = "open oil",
+		},
+	},
 	opts = {
 		delete_to_trash = true,
 		skip_confirm_for_simple_edits = false,

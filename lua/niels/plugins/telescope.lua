@@ -12,6 +12,49 @@ return {
 		"jvgrootveld/telescope-zoxide",
 		"nvim-tree/nvim-web-devicons",
 	},
+	cmd = { "Telescope" },
+	keys = {
+		{
+			"<leader>f",
+			require("telescope.builtin").find_files,
+			mode = "n",
+			desc = "Fuzzy find files in cwd",
+		},
+		{
+			"<leader>t",
+			require("telescope.builtin").treesitter,
+			mode = "n",
+			desc = "Find function or variable or something like that",
+		},
+		{
+			"<leader>o",
+			require("telescope.builtin").oldfiles,
+			mode = "n",
+			desc = "Fuzzy find recently opend files",
+		},
+		{
+			"<leader>g",
+			require("telescope.builtin").live_grep,
+			mode = "n",
+			desc = "ripgrep in current buffer",
+		},
+		{
+			"<leader>m",
+			function()
+				require("telescope").extensions.media_files.media_files()
+			end,
+			mode = "n",
+			desc = "find media files (copy path on select)",
+		},
+		{
+			"<leader>z",
+			function()
+				require("telescope").extensions.zoxide.list()
+			end,
+			mode = "n",
+			desc = "find zoxide folders",
+		},
+	},
 	opts = {
 		defaults = {
 			prompt_prefix = "❯ ",
