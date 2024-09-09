@@ -14,6 +14,7 @@ return {
 				"rust",
 				"go",
 				"markdown",
+				"markdown_inline",
 				"yaml",
 				"zig",
 			},

@@ -3,11 +3,7 @@ return {
 	version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
 	event = {
-		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-		"BufReadPre "
-			.. vim.fn.expand("~")
-			.. "/Documents/second-brain/**.md",
+		"BufReadPre " .. vim.fn.expand("~") .. "/Documents/second-brain/**.md",
 		"BufNewFile " .. vim.fn.expand("~") .. "/Documents/second-brain/**.md",
 	},
 	dependencies = {
@@ -26,58 +22,52 @@ return {
 		-- Optional, if you keep notes in a specific subdirectory of your vault.
 		notes_subdir = "notes",
 
-		-- daily_notes = {
-		-- 	-- Optional, if you keep daily notes in a separate directory.
-		-- 	folder = "notes/dailies",
-		-- 	-- Optional, if you want to change the date format for the ID of daily notes.
-		-- 	date_format = "%Y-%m-%d",
-		-- 	-- Optional, if you want to change the date format of the default alias of daily notes.
-		-- 	alias_format = "%B %-d, %Y",
-		-- 	-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-		-- 	template = "daily.md",
-		-- },
-
-		-- way then set 'mappings = {}'.
 		mappings = {
-			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
 			["gf"] = {
 				action = function()
 					return require("obsidian").util.gf_passthrough()
 				end,
 				opts = { noremap = false, expr = true, buffer = true },
 			},
-			-- Toggle check-boxes.
 			["<leader>ch"] = {
 				action = function()
 					return require("obsidian").util.toggle_checkbox()
 				end,
 				opts = { buffer = true },
 			},
-			-- Smart action depending on context, either follow link or toggle checkbox.
 			["<cr>"] = {
 				action = function()
 					return require("obsidian").util.smart_action()
 				end,
 				opts = { buffer = true, expr = true },
 			},
+			["<leader>ot"] = {
+				action = "<cmd>ObsidianTemplate<CR>",
+			},
+			["<leader>oo"] = {
+				action = "<cmd>ObsidianOpen<CR>",
+			},
+			["<leader>ob"] = {
+				action = "<cmd>ObsidianBacklinks<CR>",
+			},
+			["<leader>ol"] = {
+				action = "<cmd>ObsidianLinks<CR>",
+			},
+			-- could use oil instead but this is nice as well
+			["<leader>on"] = {
+				action = "<cmd>ObsidianNew<CR>",
+			},
+			-- use <leader>g (ripgrep)
+			-- ["<leader>os"] = {
+			-- 	action = "<cmd>ObsidianSearch<CR>",
+			-- },
+			-- use <leader>f
+			-- ["<leader>oq"] = {
+			-- 	action = "<cmd>ObsidianQuickSwitch<CR>",
+			-- },
 		},
-
-		-- Where to put new notes. Valid options are
-		--  * "current_dir" - put new notes in same directory as the current buffer.
-		--  * "notes_subdir" - put new notes in the default notes subdirectory.
 		new_notes_location = "current_dir",
-
-		-- the tag and id and stuff at the beginning of a file
 		disable_frontmatter = true,
-
-		-- Optional, for templates (see below).
-		-- templates = {
-		-- 	subdir = "templates",
-		-- 	date_format = "%Y-%m-%d",
-		-- 	time_format = "%H:%M",
-		-- 	-- A map for custom variables, the key should be the variable and the value a function
-		-- 	substitutions = {},
-		-- },
 
 		-- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
 		-- URL it will be ignored but you can customize this behavior here.
@@ -91,8 +81,23 @@ return {
 			end
 		end,
 
+		templates = {
+			folder = "templates",
+			date_format = "%Y-%m-%d",
+			time_format = "%H:%M",
+			substitutions = {
+				yesterday = function()
+					return os.date("%Y-%m-%d", os.time() - 86400)
+				end,
+				tomorrow = function()
+					return os.date("%Y-%m-%d", os.time() + 86400)
+				end,
+				name = "Niels Haupt",
+			},
+		},
+
 		-- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-		open_app_foreground = false,
+		open_app_foreground = true,
 
 		picker = {
 			name = "telescope.nvim",
@@ -116,34 +121,26 @@ return {
 				["x"] = { char = "", hl_group = "ObsidianDone" },
 				-- [">"] = { char = "", hl_group = "ObsidianRightArrow" },
 				-- ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-				-- Replace the above with this if you don't have a patched font:
-				-- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-				-- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-
-				-- You can also add more custom ones...
 			},
-			-- Use bullet marks for non-checkbox lists.
 			bullets = { char = "•", hl_group = "ObsidianBullet" },
 			external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-			-- Replace the above with this if you don't have a patched font:
-			-- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
 			reference_text = { hl_group = "ObsidianRefText" },
 			highlight_text = { hl_group = "ObsidianHighlightText" },
 			tags = { hl_group = "ObsidianTag" },
 			block_ids = { hl_group = "ObsidianBlockID" },
-			-- hl_groups = {
-			--     -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-			--     ObsidianTodo = { bold = true, fg = "#f78c6c" },
-			--     ObsidianDone = { bold = true, fg = "#89ddff" },
-			--     ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-			--     ObsidianTilde = { bold = true, fg = "#ff5370" },
-			--     ObsidianBullet = { bold = true, fg = "#89ddff" },
-			--     ObsidianRefText = { underline = true, fg = "#c792ea" },
-			--     ObsidianExtLinkIcon = { fg = "#c792ea" },
-			--     ObsidianTag = { italic = true, fg = "#89ddff" },
-			--     ObsidianBlockID = { italic = true, fg = "#89ddff" },
-			--     ObsidianHighlightText = { bg = "#75662e" },
-			-- },
+			hl_groups = {
+				-- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+				ObsidianTodo = { bold = true, fg = "#f78c6c" },
+				ObsidianDone = { bold = true, fg = "#89ddff" },
+				ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
+				ObsidianTilde = { bold = true, fg = "#ff5370" },
+				ObsidianBullet = { bold = true, fg = "#89ddff" },
+				ObsidianRefText = { underline = true, fg = "#c792ea" },
+				ObsidianExtLinkIcon = { fg = "#c792ea" },
+				ObsidianTag = { italic = true, fg = "#89ddff" },
+				ObsidianBlockID = { italic = true, fg = "#89ddff" },
+				ObsidianHighlightText = { bg = "#75662e" },
+			},
 		},
 
 		attachments = {

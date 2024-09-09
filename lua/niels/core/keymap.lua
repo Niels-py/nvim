@@ -11,7 +11,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", "Move focus to the lower window" )
 -- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", "Move focus to the upper window" )
 
--- replace selected word in whole file
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "replace word under cursor in whole file")
 
 -- tabs
