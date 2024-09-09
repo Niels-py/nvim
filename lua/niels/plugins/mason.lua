@@ -38,32 +38,6 @@ return {
 				},
 			},
 			basedpyright = {},
-			rust_analyzer = {
-				on_attach = function(_)
-					vim.lsp.inlay_hint.enable(true)
-				end,
-				settings = {
-					["rust-analyzer"] = {
-						checkOnSave = {
-							command = "clippy",
-						},
-						imports = {
-							granularity = {
-								group = "module",
-							},
-							prefix = "self",
-						},
-						cargo = {
-							buildScripts = {
-								enable = true,
-							},
-						},
-						procMacro = {
-							enable = true,
-						},
-					},
-				},
-			},
 			marksman = {},
 			zls = {},
 			lua_ls = {
@@ -100,6 +74,7 @@ return {
 			"beautysh",
 			"stylelint",
 			"jq",
+			"codelldb",
 		})
 
 		-- install everything

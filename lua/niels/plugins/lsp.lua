@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
+
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(event)
@@ -22,7 +23,7 @@ return {
 				map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 				map("<leader>d", vim.diagnostic.open_float, "shows diagnostic in float window")
 				map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-				map("<leader>h", function()
+				map("<leader>#", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "Toggle inlay hint")
 			end,

@@ -33,6 +33,7 @@ return {
 			["gx"] = "actions.open_external",
 			["g."] = "actions.toggle_hidden",
 			["gt"] = "actions.toggle_trash",
+			["<ESC>"] = "actions.close",
 		},
 		-- to use the keymaps keys
 		use_default_keymaps = false,

@@ -9,7 +9,7 @@ return {
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope-media-files.nvim",
 		"nvim-lua/popup.nvim",
-		"jvgrootveld/telescope-zoxide",
+		-- "jvgrootveld/telescope-zoxide",
 		"nvim-tree/nvim-web-devicons",
 	},
 	cmd = { "Telescope" },
@@ -39,20 +39,20 @@ return {
 			desc = "ripgrep in current buffer",
 		},
 		{
+			"<leader>h",
+			function()
+				require("telescope.builtin").help_tags()
+			end,
+			mode = "n",
+			desc = "find zoxide folders",
+		},
+		{
 			"<leader>m",
 			function()
 				require("telescope").extensions.media_files.media_files()
 			end,
 			mode = "n",
 			desc = "find media files (copy path on select)",
-		},
-		{
-			"<leader>z",
-			function()
-				require("telescope").extensions.zoxide.list()
-			end,
-			mode = "n",
-			desc = "find zoxide folders",
 		},
 	},
 	opts = {
