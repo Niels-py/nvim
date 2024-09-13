@@ -44,6 +44,18 @@ return {
 			["<leader>ot"] = {
 				action = "<cmd>ObsidianTemplate<CR>",
 			},
+			["<leader>o#"] = {
+				action = "<cmd>ObsidianTags<CR>",
+			},
+			["<leader>oe"] = {
+				action = "<cmd>ObsidianExtractNote<CR>",
+			},
+			["<leader>oc"] = {
+				action = "<cmd>ObsidianTOC<CR>",
+			},
+			["<leader>op"] = {
+				action = "<cmd>ObsidianPasteImg<CR>",
+			},
 			["<leader>oo"] = {
 				action = "<cmd>ObsidianOpen<CR>",
 			},
@@ -53,18 +65,15 @@ return {
 			["<leader>ol"] = {
 				action = "<cmd>ObsidianLinks<CR>",
 			},
-			-- could use oil instead but this is nice as well
 			["<leader>on"] = {
 				action = "<cmd>ObsidianNew<CR>",
 			},
-			-- use <leader>g (ripgrep)
-			-- ["<leader>os"] = {
-			-- 	action = "<cmd>ObsidianSearch<CR>",
-			-- },
-			-- use <leader>f
-			-- ["<leader>oq"] = {
-			-- 	action = "<cmd>ObsidianQuickSwitch<CR>",
-			-- },
+			["<leader>g"] = {
+				action = "<cmd>ObsidianSearch<CR>",
+			},
+			["<leader>f"] = {
+				action = "<cmd>ObsidianQuickSwitch<CR>",
+			},
 		},
 		new_notes_location = "current_dir",
 		disable_frontmatter = true,
@@ -112,35 +121,7 @@ return {
 		open_notes_in = "current",
 
 		ui = {
-			enable = false, -- set to false to disable all additional syntax features
-			update_debounce = 200, -- update delay after a text change (in milliseconds)
-			-- Define how various check-boxes are displayed
-			checkboxes = {
-				-- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-				[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-				["x"] = { char = "", hl_group = "ObsidianDone" },
-				-- [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-				-- ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-			},
-			bullets = { char = "•", hl_group = "ObsidianBullet" },
-			external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-			reference_text = { hl_group = "ObsidianRefText" },
-			highlight_text = { hl_group = "ObsidianHighlightText" },
-			tags = { hl_group = "ObsidianTag" },
-			block_ids = { hl_group = "ObsidianBlockID" },
-			hl_groups = {
-				-- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-				ObsidianTodo = { bold = true, fg = "#f78c6c" },
-				ObsidianDone = { bold = true, fg = "#89ddff" },
-				ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-				ObsidianTilde = { bold = true, fg = "#ff5370" },
-				ObsidianBullet = { bold = true, fg = "#89ddff" },
-				ObsidianRefText = { underline = true, fg = "#c792ea" },
-				ObsidianExtLinkIcon = { fg = "#c792ea" },
-				ObsidianTag = { italic = true, fg = "#89ddff" },
-				ObsidianBlockID = { italic = true, fg = "#89ddff" },
-				ObsidianHighlightText = { bg = "#75662e" },
-			},
+			enable = false,
 		},
 
 		attachments = {

@@ -27,7 +27,7 @@ return {
 			desc = "Find function or variable or something like that",
 		},
 		{
-			"<leader>o",
+			"<leader>p",
 			require("telescope.builtin").oldfiles,
 			mode = "n",
 			desc = "Fuzzy find recently opend files",
@@ -44,7 +44,7 @@ return {
 				require("telescope.builtin").help_tags()
 			end,
 			mode = "n",
-			desc = "find zoxide folders",
+			desc = "find help pages",
 		},
 		{
 			"<leader>m",

@@ -5,7 +5,6 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
-
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(event)
