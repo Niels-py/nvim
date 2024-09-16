@@ -29,8 +29,8 @@ return {
 			toml = { "taplo" },
 			zig = { "zigfmt" },
 			json = { "jq" },
-			c = { "clangd" },
-			cpp = { "clangd" },
+			-- c = { "clangd" },
+			-- cpp = { "clangd" },
 			-- Use the "*" filetype to run formatters on all filetypes.
 			["*"] = { "codespell" },
 		},
