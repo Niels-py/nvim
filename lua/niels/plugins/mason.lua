@@ -23,9 +23,6 @@ return {
 			clangd = {
 				cmd = {
 					"clangd",
-					"--clang-tidy",
-					'--fallback-style="{BasedOnStyle: llvm, IndentWidth: 4}"',
-					"--header-insertion=never",
 				},
 			},
 			gopls = {
