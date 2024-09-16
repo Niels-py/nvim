@@ -29,7 +29,7 @@ return {
 			["_"] = "actions.open_cwd",
 			["`"] = "actions.cd",
 			["~"] = "actions.tcd",
-			["gs"] = false, -- remove keymap for leap compatability
+			["gs"] = false, -- remove keymap for leap compatibility
 			["gx"] = "actions.open_external",
 			["g."] = "actions.toggle_hidden",
 			["gt"] = "actions.toggle_trash",
@@ -37,5 +37,6 @@ return {
 		},
 		-- to use the keymaps keys
 		use_default_keymaps = false,
+		view_options = { show_hidden = true, preview_split = "right" },
 	},
 }

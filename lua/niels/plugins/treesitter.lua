@@ -18,6 +18,8 @@ return {
 				"markdown_inline",
 				"yaml",
 				"zig",
+				"c",
+				"cpp",
 			},
 
 			sync_install = false,

@@ -20,6 +20,14 @@ return {
 		local servers = {
 			bashls = {},
 			yamlls = {},
+			clangd = {
+				cmd = {
+					"clangd",
+					"--clang-tidy",
+					'--fallback-style="{BasedOnStyle: llvm, IndentWidth: 4}"',
+					"--header-insertion=never",
+				},
+			},
 			gopls = {
 				analyses = {
 					unusedparams = true,
@@ -64,7 +72,7 @@ return {
 
 		-- make ensure_installed with all servers from servers variable
 		local ensure_installed = vim.tbl_keys(servers or {})
-		-- add addtitional stuff to install
+		-- add additional stuff to install
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 			"black",
@@ -75,6 +83,8 @@ return {
 			"stylelint",
 			"jq",
 			"codelldb",
+			"codespell",
+			"goimports",
 		})
 
 		-- install everything
