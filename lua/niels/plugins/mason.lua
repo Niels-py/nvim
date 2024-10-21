@@ -45,6 +45,7 @@ return {
 			basedpyright = {},
 			marksman = {},
 			zls = {},
+			jdtls = {},
 			lua_ls = {
 				settings = {
 					Lua = {

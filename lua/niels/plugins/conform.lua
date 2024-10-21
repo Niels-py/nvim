@@ -32,7 +32,7 @@ return {
 			-- c = { "clangd" },
 			-- cpp = { "clangd" },
 			-- Use the "*" filetype to run formatters on all filetypes.
-			["*"] = { "codespell" },
+			-- ["*"] = { "codespell" },
 		},
 		format_on_save = {
 			-- These options will be passe to conform.format()
