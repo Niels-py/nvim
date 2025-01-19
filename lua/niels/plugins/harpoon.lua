@@ -14,26 +14,20 @@ return {
 		{
 			"<leader>e",
 			function()
-				local file_paths = {}
-				for _, item in ipairs(require("harpoon"):list().items) do
-					table.insert(file_paths, item.value)
-				end
-				require("telescope.pickers")
-					.new({}, {
-						prompt_title = "Harpoon",
-						finder = require("telescope.finders").new_table({
-							results = file_paths,
-						}),
-						previewer = require("telescope.config").values.file_previewer({}),
-						sorter = require("telescope.config").values.generic_sorter({}),
-					})
-					:find()
+				require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
 			end,
 			mode = "n",
 			desc = "Open harpoon window",
 		},
 		{
-
+			"<leader>c",
+			function()
+				require("harpoon"):list():clear()
+			end,
+			mode = "n",
+			desc = "add buffer to harpoon list",
+		},
+		{
 			"<leader>j",
 			function()
 				require("harpoon"):list():next()

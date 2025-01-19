@@ -17,8 +17,8 @@ return {
 		local luasnip = require("luasnip")
 
 		-- integration with nvim-autopairs
-		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		-- `/` cmdline setup.
 		cmp.setup.cmdline("/", {
