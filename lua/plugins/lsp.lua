@@ -153,6 +153,7 @@ return {
       ts_ls = {},
       bashls = {},
       ruff = {},
+      -- hls = {},
 
       lua_ls = {
         settings = {
@@ -174,6 +175,10 @@ return {
       'prettierd',
       'prettier',
       'clang-format',
+      'ormolu',
+
+      -- linter
+      'hlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

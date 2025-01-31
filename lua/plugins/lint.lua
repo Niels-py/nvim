@@ -7,6 +7,7 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        haskell = { 'hlint' },
       }
 
       -- installed via lsp

@@ -25,22 +25,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=italic'
-      vim.cmd.hi 'Function gui=bold,italic'
-      vim.cmd.hi 'Constant gui=bold'
-      vim.cmd.hi 'String gui=italic'
-      vim.cmd.hi 'Error gui=underline'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 

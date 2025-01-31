@@ -26,7 +26,7 @@ return {
         lsp_format_opt = 'fallback'
       end
       return {
-        timeout_ms = 500,
+        timeout_ms = 2000,
         lsp_format = lsp_format_opt,
       }
     end,
@@ -39,6 +39,7 @@ return {
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
       c = { 'clang-format' },
       cpp = { 'clang-format' },
+      haskell = { 'ormolu' },
     },
   },
 }
