@@ -30,10 +30,15 @@ return {
         lsp_format = lsp_format_opt,
       }
     end,
+    -- langs that work via lsp:
+    -- python (ruff)
+    -- rust (rust_analyzer)
+    -- go (gopls)
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'ruff format' },
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      c = { 'clang-format' },
+      cpp = { 'clang-format' },
     },
   },
 }

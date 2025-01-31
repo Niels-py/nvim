@@ -12,6 +12,8 @@ return {
       -- installed via lsp
       -- c = clangd
       -- python = ruff
+      -- rust = rust_analyzer
+      -- go = gopls
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.

@@ -133,16 +133,28 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       clangd = {},
-      gopls = {},
-      rust_analyzer = {},
+      gopls = {
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+          },
+        },
+      },
+      rust_analyzer = {
+        settings = {
+          ['rust_analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
+      },
       ts_ls = {},
       bashls = {},
       ruff = {},
 
       lua_ls = {
-        -- cmd = { ... },
-        -- filetypes = { ... },
-        -- capabilities = {},
         settings = {
           Lua = {
             completion = {
@@ -157,9 +169,11 @@ return {
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+      -- formatter
       'stylua',
       'prettierd',
       'prettier',
+      'clang-format',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
