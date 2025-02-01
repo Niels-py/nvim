@@ -19,7 +19,7 @@ return {
 
       -- installed via lsp
       -- c = clangd
-      -- python = ruff
+      -- python = pyright
       -- rust = rust_analyzer
       -- go = gopls
       -- java = jdtls

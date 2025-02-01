@@ -58,7 +58,7 @@ require('lazy').setup({
         'bugreport',
         'vimball',
         'getscript',
-        'man',
+        -- 'man',
       },
     },
   },

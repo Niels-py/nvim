@@ -32,7 +32,6 @@ return {
     end,
 
     -- langs that work via lsp:
-    -- python (ruff)
     -- rust (rust_analyzer)
     -- go (gopls)
     -- java = jdtls
@@ -43,6 +42,7 @@ return {
       c = { 'clang-format' },
       cpp = { 'clang-format' },
       haskell = { 'ormolu' },
+      python = { 'black', 'flake8' },
     },
   },
 }

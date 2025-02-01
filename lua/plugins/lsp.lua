@@ -152,7 +152,8 @@ return {
       },
       ts_ls = {},
       bashls = {},
-      ruff = {},
+      -- ruff = {},
+      pyright = {},
       -- hls = {},
       jdtls = {},
 
@@ -177,6 +178,8 @@ return {
       'prettier',
       'clang-format',
       'ormolu',
+      'black',
+      'flake8',
 
       -- linter
       'markdownlint-cli2',
