@@ -35,8 +35,9 @@ return {
         treesitter = true,
         telescope = {
           enabled = true,
-          style = 'nvchad',
+          -- style = 'nvchad',
         },
+        render_markdown = true,
         mini = {
           enabled = true,
           indentscope_color = '',

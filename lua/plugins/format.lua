@@ -9,7 +9,7 @@ return {
         require('conform').format { async = true, lsp_format = 'fallback' }
       end,
       mode = '',
-      desc = '[F]ormat buffer',
+      desc = 'Format buffer',
     },
   },
   opts = {
@@ -30,10 +30,13 @@ return {
         lsp_format = lsp_format_opt,
       }
     end,
+
     -- langs that work via lsp:
     -- python (ruff)
     -- rust (rust_analyzer)
     -- go (gopls)
+    -- java = jdtls
+
     formatters_by_ft = {
       lua = { 'stylua' },
       javascript = { 'prettierd', 'prettier', stop_after_first = true },

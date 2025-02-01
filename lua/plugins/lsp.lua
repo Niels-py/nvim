@@ -154,6 +154,7 @@ return {
       bashls = {},
       ruff = {},
       -- hls = {},
+      jdtls = {},
 
       lua_ls = {
         settings = {
@@ -178,6 +179,7 @@ return {
       'ormolu',
 
       -- linter
+      'markdownlint-cli2',
       'hlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

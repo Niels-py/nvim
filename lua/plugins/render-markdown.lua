@@ -2,5 +2,12 @@ return {
   'MeanderingProgrammer/render-markdown.nvim',
   ft = 'markdown',
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-  opts = {},
+  opts = {
+    pipe_table = {
+      preset = 'round',
+    },
+    indent = {
+      enabled = false,
+    },
+  },
 }

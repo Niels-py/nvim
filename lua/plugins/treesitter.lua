@@ -3,7 +3,20 @@ return {
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   opts = {
-    ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+    ensure_installed = {
+      'bash',
+      'c',
+      'diff',
+      'html', -- required for render markdown
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'query',
+      'vim',
+      'vimdoc',
+      'latex', -- required for render markdown
+    },
     auto_install = true,
     highlight = {
       enable = true,

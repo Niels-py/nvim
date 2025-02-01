@@ -98,19 +98,19 @@ return {
       '<leader>f',
       require('telescope.builtin').find_files,
       mode = 'n',
-      desc = 'Fuzzy find files in cwd',
+      desc = 'fuzzy find files in cwd',
     },
     {
       '<leader>t',
       require('telescope.builtin').treesitter,
       mode = 'n',
-      desc = 'Find function or variable or something like that',
+      desc = 'find function or variable or something like that',
     },
     {
       '<leader>p',
       require('telescope.builtin').oldfiles,
       mode = 'n',
-      desc = 'Fuzzy find recently opend files',
+      desc = 'find recently opend files',
     },
     {
       '<leader>g',
@@ -119,7 +119,7 @@ return {
       desc = 'ripgrep in current buffer',
     },
     {
-      '<leader>h',
+      '<leader>H',
       function()
         require('telescope.builtin').help_tags()
       end,
@@ -129,10 +129,10 @@ return {
     {
       '<leader>m',
       function()
-        require('telescope').extensions.media_files.media_files()
+        require('telescope.builtin').marks()
       end,
       mode = 'n',
-      desc = 'find media files (copy path on select)',
+      desc = 'find set marks',
     },
   },
   opts = {
@@ -152,6 +152,8 @@ return {
         i = {
           ['<C-k>'] = require('telescope.actions').move_selection_previous,
           ['<C-j>'] = require('telescope.actions').move_selection_next,
+          ['<C-p>'] = require('telescope.actions').move_selection_previous,
+          ['<C-n>'] = require('telescope.actions').move_selection_next,
           ['<Esc>'] = require('telescope.actions').close,
         },
       },
