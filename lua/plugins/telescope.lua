@@ -100,12 +100,12 @@ return {
       mode = 'n',
       desc = 'fuzzy find files in cwd',
     },
-    {
-      '<leader>t',
-      require('telescope.builtin').treesitter,
-      mode = 'n',
-      desc = 'find function or variable or something like that',
-    },
+    -- {
+    --   '<leader>t',
+    --   require('telescope.builtin').treesitter,
+    --   mode = 'n',
+    --   desc = 'find function or variable or something like that',
+    -- },
     {
       '<leader>p',
       require('telescope.builtin').oldfiles,
