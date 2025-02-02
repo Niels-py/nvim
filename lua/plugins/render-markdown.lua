@@ -6,6 +6,10 @@ return {
     pipe_table = {
       preset = 'round',
     },
+    heading = {
+      icons = {},
+      signs = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+    },
     indent = {
       enabled = false,
     },

@@ -72,7 +72,36 @@ vim.opt.scrolloff = 12
 
 -- folding
 vim.opt.foldenable = true
-vim.opt.foldmethod = 'marker'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevel = 99
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('markdown_autofold', { clear = true }),
+  pattern = { 'markdown' },
+  callback = function()
+    vim.cmd [[
+    function! MarkdownFoldExpr()
+    " Get the current line's content
+    let line_content = getline(v:lnum)
+
+    let heading_level = matchstr(line_content, '^##\+\s')
+    if !empty(heading_level)
+        return len(heading_level) - 2 "-2 gets rid of space in regex and disable fold for headinglevel 1
+    endif
+
+    let next_line_content = getline(v:lnum + 1)
+    let next_heading_level = matchstr(next_line_content, '^##\+\s')
+    if !empty(next_heading_level)
+        return len(next_heading_level) - 3 "sets fold to foldlevel above
+    endif
+
+    return '='
+endfunction
+  ]]
+
+    vim.opt_local.foldexpr = 'MarkdownFoldExpr()'
+  end,
+})
 
 -- to make obsidian.nvim happy
 vim.opt.conceallevel = 1
