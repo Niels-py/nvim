@@ -5,15 +5,8 @@ return {
     config = function()
       local lint = require 'lint'
 
-      -- configuration of linters
-      lint.linters['markdownlint-cli2'].args = {
-        '--config',
-        vim.fn.expand '~/.config/nvim/markdownlint.yaml',
-        '--',
-      }
-
       lint.linters_by_ft = {
-        markdown = { 'markdownlint-cli2' },
+        markdown = { 'markdownlint' },
         haskell = { 'hlint' },
       }
 

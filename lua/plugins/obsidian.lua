@@ -29,7 +29,7 @@ return {
         end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      ['<leader>ch'] = {
+      ['<leader>c'] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
         end,
@@ -68,12 +68,12 @@ return {
       ['<leader>on'] = {
         action = '<cmd>ObsidianNew<CR>',
       },
-      ['<leader>g'] = {
-        action = '<cmd>ObsidianSearch<CR>',
-      },
-      ['<leader>f'] = {
-        action = '<cmd>ObsidianQuickSwitch<CR>',
-      },
+      -- ['<leader>g'] = {
+      --   action = '<cmd>ObsidianSearch<CR>',
+      -- },
+      -- ['<leader>f'] = {
+      --   action = '<cmd>ObsidianQuickSwitch<CR>',
+      -- },
     },
     new_notes_location = 'current_dir',
     disable_frontmatter = true,

@@ -30,3 +30,13 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 -- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 -- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>,', function()
+  if vim.wo.spell then
+    vim.wo.spell = false
+    print 'Spell checking turned off'
+  else
+    vim.wo.spell = true
+    print 'Spell checking turned on'
+  end
+end, { desc = 'toggle spell checking' })

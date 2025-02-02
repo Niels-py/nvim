@@ -55,7 +55,7 @@ require('lazy').setup({
         'gzip', -- allows browsing and extracting files in gz
         -- "matchit", -- extends the vim % functionality (html-tags, programming constructs)
         -- "matchparen", -- highlights matching pairs
-        'netrwPlugin', -- the netrw plugin (i have oil so...)
+        -- 'netrwPlugin', -- needed for network stuff (like downloading languages)
         'tarPlugin', -- allows browsing and extracting files in tar balls
         'tohtml', -- converts the buffer with syntax highlighting and all to html
         'tutor', -- the neovim :Tutor command

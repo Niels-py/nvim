@@ -10,6 +10,7 @@ return {
     -- Document existing key chains
     spec = {
       { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
+      { '<leader>o', group = 'Obsidian', mode = { 'n', 'v' } },
     },
   },
 }

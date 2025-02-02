@@ -43,6 +43,7 @@ return {
       cpp = { 'clang-format' },
       haskell = { 'ormolu' },
       python = { 'black', 'flake8' },
+      markdown = { 'markdownlint' },
     },
   },
 }

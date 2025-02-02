@@ -178,6 +178,7 @@ return {
       pyright = {},
       -- hls = {},
       jdtls = {},
+      marksman = {},
 
       lua_ls = {
         settings = {
@@ -204,7 +205,7 @@ return {
       'flake8',
 
       -- linter
-      'markdownlint-cli2',
+      'markdownlint',
       'hlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

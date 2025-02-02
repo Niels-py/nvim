@@ -12,7 +12,6 @@ return {
       vim.g.mkdp_markdown_css = vim.fn.expand '~/.config/nvim/markdown.css'
       -- vim.g.mkdp_port = '6969'
 
-      -- vim.cmd [[do FileType]]
       vim.cmd [[
         function OpenMarkdownPreview (url)
           if has('darwin')
