@@ -43,6 +43,7 @@ return {
           indentscope_color = '',
         },
         which_key = true,
+        fidget = true,
       },
     }
     vim.cmd.colorscheme 'catppuccin'
