@@ -67,6 +67,9 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+-- make a visible column at line 80
+vim.opt.colorcolumn = '80'
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 12
 
@@ -75,33 +78,7 @@ vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 99
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('markdown_fold', { clear = true }),
-  pattern = { 'markdown' },
-  callback = function()
-    vim.cmd [[
-      function! MarkdownFoldExpr()
-        " Get the current line's content
-        let line_content = getline(v:lnum)
-
-        let heading_level = matchstr(line_content, '^##\+\s')
-        if !empty(heading_level)
-          return len(heading_level) - 2 "-2 gets rid of space in regex and disable fold for headinglevel 1
-        endif
-
-        let next_line_content = getline(v:lnum + 1)
-        let next_heading_level = matchstr(next_line_content, '^##\+\s')
-        if !empty(next_heading_level)
-          return len(next_heading_level) - 3 "sets fold to foldlevel above
-        endif
-
-        return '='
-      endfunction
-    ]]
-
-    vim.opt_local.foldexpr = 'MarkdownFoldExpr()'
-  end,
-})
+vim.g.markdown_folding = 1
 
 -- spell
 vim.opt.spelllang = 'en_gb,de_20'
