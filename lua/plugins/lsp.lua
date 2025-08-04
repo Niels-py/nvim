@@ -183,7 +183,7 @@ return {
       },
       ts_ls = {},
       bashls = {},
-      -- ruff = {},
+      ruff = {},
       pyright = {},
       -- hls = {},
       jdtls = {},
