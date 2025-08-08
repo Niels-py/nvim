@@ -1,7 +1,7 @@
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'BufReadPre', 'BufNewFile' },
   cmd = {
     'LspInfo',
     'LspLog',
