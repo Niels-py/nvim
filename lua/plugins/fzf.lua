@@ -13,9 +13,21 @@ return {
     },
     {
       '<leader>g',
-      '<cmd>FzfLua files<cr>',
+      '<cmd>FzfLua live_grep<cr>',
       mode = 'n',
       desc = 'fuzzy grep search in cwd',
+    },
+    {
+      '<leader>H',
+      '<cmd>FzfLua helptags<cr>',
+      mode = 'n',
+      desc = 'search helptags',
+    },
+    {
+      '<leader>z',
+      '<cmd>FzfLua zoxide<cr>',
+      mode = 'n',
+      desc = 'search commonly used folders',
     },
   },
   config = function()

@@ -59,30 +59,30 @@ return {
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        map('gd', '<cmd>FzfLua lsp_definitions<cr>', '[G]oto [D]efinition')
 
         -- Find references for the word under your cursor.
-        map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        map('gr', '<cmd>FzfLua lsp_references<cr>', '[G]oto [R]eferences')
 
         -- open diagnostic in floating window (if you cannot see the whole linter output)
         map('<leader>d', vim.diagnostic.open_float, 'display [D]iagnostics')
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        map('gI', '<cmd>FzfLua lsp_implementations<cr>', '[G]oto [I]mplementation')
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        map('<leader>D', '<cmd>FzfLua lsp_type_definitions<cr>', 'Type [D]efinition')
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map('<leader>s', require('telescope.builtin').lsp_document_symbols, 'Document [S]ymbols')
+        map('<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document [S]ymbols')
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
+        map('<leader>S', '<cmd>FzfLua lsp_dynamic_workspace_symbols<cr>', 'Workspace [S]ymbols')
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
