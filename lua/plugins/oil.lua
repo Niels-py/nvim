@@ -2,6 +2,7 @@ return {
   'stevearc/oil.nvim',
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  lazy = false, -- so that it start when using e.g. 'nvim .'
   keys = {
     {
       '<leader>n',
@@ -13,8 +14,9 @@ return {
     },
   },
   opts = {
+    default_file_explorer = true,
     delete_to_trash = true,
-    skip_confirm_for_simple_edits = false,
+    skip_confirm_for_simple_edits = true,
 
     keymaps = {
       ['g?'] = 'actions.show_help',
