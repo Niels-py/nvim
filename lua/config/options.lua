@@ -83,6 +83,3 @@ vim.g.markdown_folding = 1
 -- spell
 vim.opt.spelllang = 'en_gb,de_20'
 vim.opt.spellsuggest = 'fast'
-
--- to make obsidian.nvim happy
-vim.opt.conceallevel = 1

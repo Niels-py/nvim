@@ -16,6 +16,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- An easy way to open a vertical terminal window.
+-- Winfix, so that it wont resize when resizing the real terminal window.
+vim.keymap.set('n', 't', '<cmd>vert 40new | setlocal winfixwidth | term<cr>', { desc = 'Open vertical terminal' })
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
