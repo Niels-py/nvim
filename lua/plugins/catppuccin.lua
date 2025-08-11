@@ -7,44 +7,23 @@ return {
       flavour = 'mocha',
       transparent_background = true,
       float = {
-        transparent = true, -- enable transparent floating windows
+        transparent = false, -- enable transparent floating windows
         solid = false, -- use solid styling for floating windows, see |winborder|
       },
-      styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { 'italic' }, -- Change the style of comments
-        conditionals = { 'italic' },
-        loops = { 'bold' },
-        functions = { 'bold', 'italic' },
-        keywords = {},
-        strings = { 'italic' },
-        variables = {},
-        numbers = {},
-        booleans = { 'bold' },
-        properties = {},
-        types = {},
-        operators = {},
-        -- miscs = {}, -- Uncomment to turn off hard-coded styles
-      },
+      auto_integrations = true,
       integrations = {
-        cmp = true,
-        gitsigns = true,
-        harpoon = false,
-        nvimtree = false,
+        blink_cmp = {
+          style = 'bordered',
+        },
         indent_blankline = {
           enabled = true,
           scope_color = 'surface1', -- catppuccin color (eg. `lavender`) Default: text
           colored_indent_levels = true,
         },
-        mason = true,
-        treesitter = true,
-        fzf = true,
-        render_markdown = true,
         mini = {
           enabled = true,
           indentscope_color = '',
         },
-        which_key = true,
-        fidget = true,
       },
     }
     vim.cmd.colorscheme 'catppuccin'
