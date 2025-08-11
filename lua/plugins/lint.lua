@@ -11,11 +11,11 @@ return {
       }
 
       -- installed via lsp
-      -- c = clangd
+      -- c      = clangd
       -- python = pyright
-      -- rust = rust_analyzer
-      -- go = gopls
-      -- java = jdtls
+      -- rust   = rust_analyzer
+      -- go     = gopls
+      -- java   = jdtls
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
