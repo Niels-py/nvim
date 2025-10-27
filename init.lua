@@ -69,7 +69,8 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- preview substitutions live, as you type!
--- note: noch nicht 100% überzeugt von dem zeug
+-- note: noch nicht 100% überzeugt von dem Zeug
+--       da es auf großen Dateien etwas laggy sein kann
 vim.opt.inccommand = 'split'
 
 -- show which line your cursor is on
@@ -96,6 +97,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- provider settings
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- --------------------------------
 -- Autocommands
 -- --------------------------------
@@ -111,20 +116,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  callback = function()
-    -- check if treesitter has parser
-    if require("nvim-treesitter.parsers").has_parser() then
-      -- use treesitter folding
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-    else
-      -- use alternative foldmethod
-      vim.opt.foldmethod = "syntax"
-    end
-  end,
-})
-
 -- --------------------------------
 -- Keybinds
 -- --------------------------------
@@ -135,9 +126,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Enable spellchecking
 vim.keymap.set('n', '<leader>,', function()
@@ -177,7 +165,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    'tpope/vim-sleuth', -- automatically adjust tabwidth for different files
+    'tpope/vim-sleuth',        -- automatically adjust tabwidth for different files
+    'lewis6991/gitsigns.nvim', -- add gitsigns
     {
       'saghen/blink.cmp',
       -- optional: provides snippets for the snippet source
@@ -242,7 +231,7 @@ require("lazy").setup({
           },
         }
       },
-      config = function(_, opts)
+      config = function()
         --  This function gets run when an LSP attaches to a particular buffer.
         --    That is to say, every time a new file is opened that is associated with
         --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -272,6 +261,11 @@ require("lazy").setup({
             map('<leader>r', vim.lsp.buf.rename, 'rename symbol')
             map('<leader>ca', vim.lsp.buf.code_action, 'code action')
 
+            -- Diagnostics
+            map('<leader>d', vim.diagnostic.open_float, 'show line diagnostics')
+            map('<leader>q', vim.diagnostic.setloclist, 'open quickfix list')
+
+
             -- Inlay Hints
             if client and client:supports_method 'textDocument/inlayHint' then
               map('<leader>#', function()
@@ -290,6 +284,7 @@ require("lazy").setup({
           'lua_ls',
           'clangd',
           'gopls',
+          'hls',
           'rust_analyzer',
           'fish_lsp',
         })
@@ -354,7 +349,6 @@ require("lazy").setup({
         vim.cmd.hi 'Character gui=bold'
         vim.cmd.hi 'Number gui=none'
         vim.cmd.hi 'Boolean gui=bold'
-        vim.cmd.hi 'Number gui=none'
 
         vim.cmd.hi 'Statement gui=none'
         vim.cmd.hi 'Conditional gui=bold'
@@ -408,60 +402,6 @@ require("lazy").setup({
         }
       end,
     },
-    {
-      'lewis6991/gitsigns.nvim',
-      opts = {
-        -- signs = {
-        --   add = { text = '+' },
-        --   change = { text = '~' },
-        --   delete = { text = '_' },
-        --   topdelete = { text = '‾' },
-        --   changedelete = { text = '~' },
-        -- },
-
-        on_attach = function(bufnr)
-          local gitsigns = require 'gitsigns'
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          map('n', ']h', function()
-            gitsigns.nav_hunk 'next'
-          end, { desc = 'Jump to next git hunk' })
-
-          map('n', '[h', function()
-            gitsigns.nav_hunk 'prev'
-          end, { desc = 'Jump to previous git hunk' })
-
-          -- Actions
-          -- visual mode
-          map('v', '<leader>hs', function()
-            gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          end, { desc = 'git [s]tage hunk' })
-          map('v', '<leader>hr', function()
-            gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          end, { desc = 'git [r]eset hunk' })
-          -- normal mode
-          map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
-          map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
-          map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-          map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
-          -- map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'git [u]ndo stage hunk' })
-          map('n', '<leader>hp', gitsigns.preview_hunk_inline, { desc = 'git [p]review hunk' })
-          map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-          map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
-          map('n', '<leader>hD', function()
-            gitsigns.diffthis '@'
-          end, { desc = 'git [D]iff against last commit' })
-          -- Toggles
-          -- map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-          -- map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
-        end,
-      },
-    },
     { -- Add indentation guides even on blank lines
       'lukas-reineke/indent-blankline.nvim',
       main = 'ibl',
@@ -501,8 +441,6 @@ require("lazy").setup({
         vim.g.mkdp_theme = ''
         vim.g.mkdp_markdown_css = vim.fn.stdpath("config") .. "/markdown.css"
 
-        -- vim.g.mkdp_port = '6969'
-
         vim.cmd [[
           function OpenMarkdownPreview (url)
             if has('darwin')
@@ -533,9 +471,10 @@ require("lazy").setup({
       opts = {
         ensure_installed = {
           'bash',
+          'python',
           'c',
           'diff',
-          'html', -- required for render markdown
+          'html',
           'lua',
           'luadoc',
           'markdown',
@@ -543,7 +482,7 @@ require("lazy").setup({
           'query',
           'vim',
           'vimdoc',
-          'latex', -- required for render markdown
+          'latex',
         },
         sync_install = false,
         auto_install = true,
@@ -619,4 +558,20 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+})
+
+-- folding autocommand
+-- needs to be after lazy to ensure that treesitter is installed
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function()
+    -- check if treesitter has parser
+    if require("nvim-treesitter.parsers").has_parser() then
+      -- use treesitter folding
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    else
+      -- use alternative foldmethod
+      vim.opt.foldmethod = "syntax"
+    end
+  end,
 })
