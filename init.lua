@@ -168,6 +168,28 @@ require("lazy").setup({
     'tpope/vim-sleuth',        -- automatically adjust tabwidth for different files
     'lewis6991/gitsigns.nvim', -- add gitsigns
     {
+      "3rd/image.nvim",
+      build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+      opts = {
+        processor = "magick_cli",
+        backend = (function()
+          if vim.fn.has("macunix") == 1 then
+            return "kitty"
+          else
+            return "sixel"
+          end
+        end)(),
+      },
+    },
+    {
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {},
+      keys = {
+        { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+      },
+    },
+    {
       'saghen/blink.cmp',
       -- optional: provides snippets for the snippet source
       dependencies = { 'rafamadriz/friendly-snippets' },
