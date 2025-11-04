@@ -172,6 +172,12 @@ require("lazy").setup({
       build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
       opts = {
         processor = "magick_cli",
+        integrations = {
+          markdown = {
+            only_render_image_at_cursor = true,          -- defaults to false
+            only_render_image_at_cursor_mode = "inline", -- "popup" or "inline", defaults to "popup"
+          }
+        },
         backend = (function()
           if vim.fn.has("macunix") == 1 then
             return "kitty"
