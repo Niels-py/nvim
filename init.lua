@@ -236,7 +236,7 @@ require("lazy").setup({
         },
         {
             'stevearc/oil.nvim',
-            opts = {},
+            opts = { delete_to_trash = false },
             dependencies = { { "nvim-mini/mini.icons", opts = {} } },
             lazy = false,
         },
