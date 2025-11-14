@@ -181,8 +181,20 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        'tpope/vim-sleuth',        -- automatically adjust tabwidth for different files
-        'lewis6991/gitsigns.nvim', -- add gitsigns
+        'tpope/vim-sleuth',              -- automatically adjust tabwidth for different files
+        'brianhuster/live-preview.nvim', -- markdown preview
+        'folke/which-key.nvim',
+        {
+            'nvim-mini/mini.nvim',
+            config = function()
+                require('mini.ai').setup()
+                require('mini.surround').setup()
+                require('mini.pairs').setup()
+                require('mini.align').setup()
+                require('mini.git').setup()
+                require('mini.diff').setup()
+            end,
+        },
         {
             "3rd/image.nvim",
             build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
@@ -400,9 +412,7 @@ require("lazy").setup({
         },
         {
             'ibhagwan/fzf-lua',
-            dependencies = { 'nvim-tree/nvim-web-devicons' },
-            -- or if using mini.icons/mini.nvim
-            -- dependencies = { "echasnovski/mini.icons" },
+            dependencies = { "nvim-mini/mini.icons" },
             cmd = { 'FzfLua' },
             keys = {
                 {
@@ -445,26 +455,20 @@ require("lazy").setup({
         },
         {
             'nvim-lualine/lualine.nvim',
-            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            dependencies = { 'nvim-mini/mini.icons' },
             priority = 999,
             lazy = false,
-            opts = {
-                options = {
-                    theme = 'catppuccin',
-                    icons_enabled = true,
-                    component_separators = { left = '|', right = '|' },
-                    section_separators = { left = '', right = '' },
-                },
-            },
-        },
-        'brianhuster/live-preview.nvim',
-        {
-            'echasnovski/mini.nvim',
             config = function()
-                require('mini.ai').setup { n_lines = 500 }
-                require('mini.surround').setup()
-                require('mini.pairs').setup()
-                require('mini.align').setup()
+                require("mini.icons").setup()
+                require("mini.icons").mock_nvim_web_devicons()
+
+                require('lualine').setup {
+                    options = {
+                        theme = 'catppuccin',
+                        icons_enabled = true,
+                        component_separators = { left = '|', right = '|' },
+                        section_separators = { left = '', right = '' },
+                    }, }
             end,
         },
         {
@@ -554,16 +558,6 @@ require("lazy").setup({
             config = function(_, opts)
                 require("nvim-treesitter.configs").setup(opts)
             end,
-        },
-        {
-            'folke/which-key.nvim',
-            event = 'VimEnter',
-            opts = {
-                delay = 300,
-                spec = {
-                    { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
-                },
-            },
         },
         {
             'stevearc/conform.nvim',
