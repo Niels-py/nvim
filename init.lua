@@ -94,6 +94,8 @@ vim.opt.spellsuggest = 'fast'
 -- provider settings
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- --------------------------------
 -- Autocommands
@@ -106,7 +108,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
-        vim.highlight.on_yank { higroup = 'Visual', timeout = 250 }
+        vim.hl.on_yank { higroup = 'Visual', timeout = 250 }
     end,
 })
 
@@ -297,17 +299,10 @@ require("lazy").setup({
                         -- goto
                         map('gd', vim.lsp.buf.definition, 'goto definition')
                         map('gD', vim.lsp.buf.declaration, 'goto declaration')
-                        map('gi', vim.lsp.buf.implementation, 'goto implementation')
-                        map('gr', vim.lsp.buf.references, 'goto references')
-                        map('gt', vim.lsp.buf.type_definition, 'goto type definition')
 
                         -- Info
                         map('K', vim.lsp.buf.hover, 'hover documentation')
                         map('<C-k>', vim.lsp.buf.signature_help, 'signature help')
-
-                        -- Actions
-                        map('<leader>r', vim.lsp.buf.rename, 'rename symbol')
-                        map('<leader>ca', vim.lsp.buf.code_action, 'code action')
 
                         -- Diagnostics
                         map('<leader>d', vim.diagnostic.open_float, 'show line diagnostics')
@@ -423,18 +418,6 @@ require("lazy").setup({
                     mode = 'n',
                     desc = 'fuzzy grep search in cwd',
                 },
-                {
-                    '<leader>H',
-                    '<cmd>FzfLua helptags<cr>',
-                    mode = 'n',
-                    desc = 'search helptags',
-                },
-                {
-                    '<leader>z',
-                    '<cmd>FzfLua zoxide<cr>',
-                    mode = 'n',
-                    desc = 'search commonly used folders',
-                },
             },
             config = function()
                 require('fzf-lua').setup {
@@ -475,37 +458,13 @@ require("lazy").setup({
                 },
             },
         },
-        {
-            'iamcco/markdown-preview.nvim',
-            cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-            ft = { 'markdown' },
-            build = 'cd app && yarn install',
-            init = function()
-                vim.g.mkdp_filetypes = { 'markdown' }
-            end,
-            config = function()
-                vim.g.mkdp_theme = ''
-                vim.g.mkdp_markdown_css = vim.fn.stdpath("config") .. "/markdown.css"
-
-                vim.cmd [[
-          function OpenMarkdownPreview (url)
-            if has('darwin')
-              let cmd = "open -a Firefox -n --args --new-window " . shellescape(a:url) . " &"
-            elseif has('unix')
-              let cmd = "firefox --new-window " . shellescape(a:url) . " &"
-            endif
-            silent call system(cmd)
-          endfunction
-        ]]
-                vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-            end,
-        },
+        'brianhuster/live-preview.nvim',
         {
             'echasnovski/mini.nvim',
             config = function()
                 require('mini.ai').setup { n_lines = 500 }
                 require('mini.surround').setup()
-                -- require('mini.pairs').setup()
+                require('mini.pairs').setup()
                 require('mini.align').setup()
             end,
         },
