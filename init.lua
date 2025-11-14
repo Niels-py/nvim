@@ -343,8 +343,6 @@ require("lazy").setup({
             ft = "lua", -- only load on lua files
             opts = {
                 library = {
-                    -- See the configuration section for more details
-                    -- Load luvit types when the `vim.uv` word is found
                     { path = "${3rd}/luv/library", words = { "vim%.uv" } },
                 },
             },
@@ -512,51 +510,98 @@ require("lazy").setup({
             end,
         },
         {
-            'nvim-treesitter/nvim-treesitter',
-            build = ':TSUpdate',
-            event = { 'BufReadPre', 'BufNewFile' },
-            main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+            "nvim-treesitter/nvim-treesitter",
+            branch = 'master',
+            lazy = false,
+            build = ":TSUpdate",
+            dependencies = {
+                'nvim-treesitter/nvim-treesitter-textobjects',
+            },
             opts = {
-                ensure_installed = {
+                ensure_installed      = {
                     'bash',
-                    'python',
+                    'bibtex',
                     'c',
+                    'cpp',
                     'diff',
+                    'dockerfile',
+                    'fish',
+                    'go',
                     'html',
+                    'java',
+                    'json',
+                    'jsonc',
+                    'latex',
+                    'javascript',
                     'lua',
                     'luadoc',
+                    'make',
                     'markdown',
                     'markdown_inline',
+                    'python',
                     'query',
+                    'rust',
+                    'toml',
                     'vim',
                     'vimdoc',
-                    'latex',
+                    'yaml',
                 },
-                sync_install = false,
-                auto_install = true,
-                highlight = {
+                highlight             = { enable = true },
+                indent                = { enable = true },
+                incremental_selection = {
                     enable = true,
-                    additional_vim_regex_highlighting = { 'ruby' }
+                    keymaps = {
+                        init_selection = "<C-space>",
+                        node_incremental = "<C-space>",
+                        node_decremental = "<bs>",
+                    },
                 },
-                indent = { enable = true, disable = { 'ruby' } },
+                textobjects           = {
+                    select = {
+                        enable = true,
+                        lookahead = true, -- jump to the next text object
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                            ["al"] = "@loop.outer",
+                            ["il"] = "@loop.inner",
+                        },
+                        include_surrounding_whitespace = true,
+                    },
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                        goto_next_start = {
+                            ["]f"] = "@function.outer",
+                            ["]c"] = "@class.outer",
+                        },
+                        goto_previous_start = {
+                            ["[f"] = "@function.outer",
+                            ["[c"] = "@class.outer",
+                        },
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>sa"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>sA"] = "@parameter.inner",
+                        },
+                    },
+                },
             },
-            -- There are additional nvim-treesitter modules that you can use to interact
-            -- with nvim-treesitter. You should go explore a few and see what interests you:
-            --
-            --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-            --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-            --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+            config = function(_, opts)
+                require("nvim-treesitter.configs").setup(opts)
+            end,
         },
         {
             'folke/which-key.nvim',
-            event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+            event = 'VimEnter',
             opts = {
-                -- delay between pressing a key and opening which-key (milliseconds)
-                -- this setting is independent of vim.opt.timeoutlen
                 delay = 300,
-                icons = { mappings = true },
-
-                -- Document existing key chains
                 spec = {
                     { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
                 },
@@ -594,9 +639,25 @@ require("lazy").setup({
                 -- lua    = lua_ls
 
                 formatters_by_ft = {
-                    javascript = { 'prettierd', 'prettier', stop_after_first = true },
-                    haskell = { 'ormolu' },
-                    markdown = { 'markdownlint-cli2' },
+                    haskell = { "ormolu" },
+
+                    markdown = { "prettierd" },
+                    javascript = { "prettierd" },
+                    javascriptreact = { "prettierd" },
+                    typescript = { "prettierd" },
+                    typescriptreact = { "prettierd" },
+                    css = { "prettierd" },
+                    scss = { "prettierd" },
+                    less = { "prettierd" },
+                    html = { "prettierd" },
+                    json = { "prettierd" },
+                    jsonc = { "prettierd" },
+                    yaml = { "prettierd" },
+                    mdx = { "prettierd" },
+                    graphql = { "prettierd" },
+                    vue = { "prettierd" },
+                    svelte = { "prettierd" },
+                    astro = { "prettierd" },
                 },
             },
         },
