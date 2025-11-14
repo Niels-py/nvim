@@ -113,12 +113,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Spell-checking in specific FileTypes by default
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "html", "markdown", "text" },
-    callback = function()
-        vim.opt_local.spell = true
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "html", "markdown", "text" },
+--     callback = function()
+--         vim.opt_local.spell = true
+--     end,
+-- })
 
 -- not incsearch preview window so that searching in big files is not laggy
 vim.api.nvim_create_autocmd("BufReadPre", {
@@ -301,7 +301,6 @@ require("lazy").setup({
                         map('gD', vim.lsp.buf.declaration, 'goto declaration')
 
                         -- Info
-                        map('K', vim.lsp.buf.hover, 'hover documentation')
                         map('<C-k>', vim.lsp.buf.signature_help, 'signature help')
 
                         -- Diagnostics
