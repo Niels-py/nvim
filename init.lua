@@ -181,23 +181,30 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        'tpope/vim-sleuth',              -- automatically adjust tabwidth for different files
-        'brianhuster/live-preview.nvim', -- markdown preview
-        'folke/which-key.nvim',
+        'tpope/vim-sleuth', -- automatically adjust tabwidth for different files
+        { 'folke/which-key.nvim', event = 'VeryLazy' },
         {
             'nvim-mini/mini.nvim',
             config = function()
                 require('mini.ai').setup()
                 require('mini.surround').setup()
-                require('mini.pairs').setup()
+                -- require('mini.pairs').setup()
                 require('mini.align').setup()
-                require('mini.git').setup()
+                -- require('mini.git').setup()
                 require('mini.diff').setup()
             end,
         },
         {
+            'brianhuster/live-preview.nvim', -- markdown preview
+            ft = { "markdown", "asciidoc", "svg", "html" },
+            dependencies = {
+                'ibhagwan/fzf-lua',
+            },
+        },
+        {
             "3rd/image.nvim",
             build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+            ft = { 'markdown', 'typst' },
             opts = {
                 processor = "magick_cli",
                 integrations = {
@@ -217,8 +224,8 @@ require("lazy").setup({
         },
         {
             "HakonHarnes/img-clip.nvim",
-            event = "VeryLazy",
             opts = {},
+            ft = { 'markdown' },
             keys = {
                 { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
             },
@@ -250,19 +257,9 @@ require("lazy").setup({
         },
         {
             'stevearc/oil.nvim',
-            opts = { delete_to_trash = false },
+            opts = { delete_to_trash = true },
             dependencies = { { "nvim-mini/mini.icons", opts = {} } },
             lazy = false,
-        },
-        {
-            'j-hui/fidget.nvim',
-            opts = {
-                notification = {
-                    window = {
-                        winblend = 0,
-                    },
-                },
-            },
         },
         {
             'neovim/nvim-lspconfig',
@@ -328,6 +325,17 @@ require("lazy").setup({
                         end
                     end,
                 })
+
+                require("fidget").setup {
+                    notification = {
+                        window = {
+                            winblend = 0,
+                        },
+                    },
+                }
+
+                vim.notify = require("fidget").notify
+
 
                 vim.lsp.enable({
                     'marksman',
@@ -443,6 +451,7 @@ require("lazy").setup({
         { -- Add indentation guides even on blank lines
             'lukas-reineke/indent-blankline.nvim',
             main = 'ibl',
+            event = { "BufReadPost", "BufNewFile" },
             opts = {
                 scope = { enabled = false },
                 exclude = {
@@ -480,7 +489,7 @@ require("lazy").setup({
                 'nvim-treesitter/nvim-treesitter-textobjects',
             },
             opts = {
-                ensure_installed      = {
+                ensure_installed = {
                     'bash',
                     'bibtex',
                     'c',
@@ -508,17 +517,9 @@ require("lazy").setup({
                     'vimdoc',
                     'yaml',
                 },
-                highlight             = { enable = true },
-                indent                = { enable = true },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "<C-space>",
-                        node_incremental = "<C-space>",
-                        node_decremental = "<bs>",
-                    },
-                },
-                textobjects           = {
+                highlight        = { enable = true },
+                indent           = { enable = true },
+                textobjects      = {
                     select = {
                         enable = true,
                         lookahead = true, -- jump to the next text object
@@ -542,15 +543,6 @@ require("lazy").setup({
                         goto_previous_start = {
                             ["[f"] = "@function.outer",
                             ["[c"] = "@class.outer",
-                        },
-                    },
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ["<leader>sa"] = "@parameter.inner",
-                        },
-                        swap_previous = {
-                            ["<leader>sA"] = "@parameter.inner",
                         },
                     },
                 },
