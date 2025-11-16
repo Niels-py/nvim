@@ -405,25 +405,7 @@ require("lazy").setup({
                 require('catppuccin').setup {
                     flavour = 'mocha',
                     transparent_background = true,
-                    float = {
-                        transparent = false, -- enable transparent floating windows
-                        solid = false,       -- use solid styling for floating windows, see |winborder|
-                    },
                     auto_integrations = true,
-                    integrations = {
-                        blink_cmp = {
-                            style = 'bordered',
-                        },
-                        indent_blankline = {
-                            enabled = true,
-                            scope_color = 'surface1', -- catppuccin color (eg. `lavender`) Default: text
-                            colored_indent_levels = true,
-                        },
-                        mini = {
-                            enabled = true,
-                            indentscope_color = '',
-                        },
-                    },
                 }
                 vim.cmd.colorscheme 'catppuccin'
 
@@ -491,7 +473,8 @@ require("lazy").setup({
                         icons_enabled = true,
                         component_separators = { left = '|', right = '|' },
                         section_separators = { left = '', right = '' },
-                    }, }
+                    },
+                }
             end,
         },
         {
