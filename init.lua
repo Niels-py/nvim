@@ -129,6 +129,41 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     end,
 })
 
+-- bullets
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "text", "asciidoc", "typst" },
+    callback = function()
+        vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
+        vim.opt_local.formatoptions:append("o") -- `o` in normal mode
+        vim.opt_local.comments = {
+            "b:- [ ]",                          -- tasks
+            "b:- [x]",
+            "b:*",                              -- unordered list
+            "b:-",
+            "b:1.",                             -- ordered list
+        }
+
+        -- second-enter-clears-bullet
+        vim.keymap.set("i", "<CR>", function()
+            local line = vim.api.nvim_get_current_line()
+            local col = vim.fn.col(".")
+            local before_cursor = line:sub(1, col - 1)
+
+            -- Muster einer leeren Bullet-Zeile erkennen
+            if before_cursor:match("^%s*[-*] %s*$")
+                or before_cursor:match("^%s*[-*]%s*$")
+                or before_cursor:match("^%s*%d+%. %s*$")
+            then
+                -- Bullet aus der aktuellen Zeile löschen
+                return "<Esc>0C"
+            end
+
+            -- normales Enter
+            return "<CR>"
+        end, { buffer = true, expr = true })
+    end,
+})
+
 -- --------------------------------
 -- Keybinds
 -- --------------------------------
@@ -194,6 +229,7 @@ require("lazy").setup({
                 require('mini.diff').setup()
             end,
         },
+        { 'saghen/blink.indent',  opts = { scope = { enabled = false } } },
         {
             'brianhuster/live-preview.nvim', -- markdown preview
             ft = { "markdown", "asciidoc", "svg", "html" },
@@ -362,14 +398,6 @@ require("lazy").setup({
             },
         },
         {
-            'bullets-vim/bullets.vim',
-            ft = { 'markdown', 'text' },
-            config = function()
-                -- vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'num', 'abc', 'rom', 'std-', 'std*', 'std+' }
-                vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'num', 'abc', 'rom', 'std-' }
-            end,
-        },
-        {
             'catppuccin/nvim',
             name = 'catppuccin',
             priority = 1000, -- Make sure to load this before all the other start plugins.
@@ -447,20 +475,6 @@ require("lazy").setup({
                     },
                 }
             end,
-        },
-        { -- Add indentation guides even on blank lines
-            'lukas-reineke/indent-blankline.nvim',
-            main = 'ibl',
-            event = { "BufReadPost", "BufNewFile" },
-            opts = {
-                scope = { enabled = false },
-                exclude = {
-                    filetypes = {
-                        'lazy',
-                        'lazyterm',
-                    }
-                },
-            },
         },
         {
             'nvim-lualine/lualine.nvim',
@@ -613,6 +627,7 @@ require("lazy").setup({
     checker = { enabled = true },
 })
 
+-- needs to be after lazy to ensure lazy is installed
 vim.api.nvim_create_autocmd(
     "VimEnter", {
         callback = function()
@@ -622,7 +637,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- folding autocommand
--- needs to be after lazy to ensure that treesitter is installed
+-- needs to be after lazy to ensure treesitter is installed
 vim.api.nvim_create_autocmd({ "FileType" }, {
     callback = function()
         -- check if treesitter has parser
