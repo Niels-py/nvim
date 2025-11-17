@@ -120,7 +120,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --     end,
 -- })
 
--- not incsearch preview window so that searching in big files is not laggy
+-- not incsearch preview window so that substitutions in big files are not laggy
 vim.api.nvim_create_autocmd("BufReadPre", {
     callback = function()
         if vim.fn.getfsize(vim.fn.expand("%")) > 500000 then
@@ -229,7 +229,19 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         'tpope/vim-sleuth', -- automatically adjust tabwidth for different files
-        { 'folke/which-key.nvim', event = 'VeryLazy' },
+        { 'folke/which-key.nvim',          event = 'VeryLazy' },
+        {
+            'catppuccin/nvim',
+            name = 'catppuccin',
+            priority = 1000,
+            opts = {
+                flavour = 'mocha',
+                transparent_background = true,
+                auto_integrations = true,
+            }
+        },
+        { 'saghen/blink.indent',           opts = { scope = { enabled = false } } },
+        { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
         {
             'nvim-mini/mini.nvim',
             config = function()
@@ -241,17 +253,9 @@ require("lazy").setup({
                 require('mini.diff').setup()
             end,
         },
-        { 'saghen/blink.indent',  opts = { scope = { enabled = false } } },
-        {
-            'brianhuster/live-preview.nvim', -- markdown preview
-            ft = { "markdown", "asciidoc", "svg", "html" },
-            dependencies = {
-                'ibhagwan/fzf-lua',
-            },
-        },
         {
             "3rd/image.nvim",
-            build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+            build = false, -- so that it doesn't build the lua rock
             ft = { 'markdown', 'typst' },
             opts = {
                 processor = "magick_cli",
@@ -305,9 +309,8 @@ require("lazy").setup({
         },
         {
             'stevearc/oil.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
             opts = { delete_to_trash = true },
-            dependencies = { { "nvim-mini/mini.icons", opts = {} } },
-            lazy = false,
         },
         {
             'neovim/nvim-lspconfig',
@@ -410,39 +413,8 @@ require("lazy").setup({
             },
         },
         {
-            'catppuccin/nvim',
-            name = 'catppuccin',
-            priority = 1000, -- Make sure to load this before all the other start plugins.
-            init = function()
-                require('catppuccin').setup {
-                    flavour = 'mocha',
-                    transparent_background = true,
-                    auto_integrations = true,
-                }
-                vim.cmd.colorscheme 'catppuccin'
-
-                -- hard-coded styles
-                -- :h highlight-groups
-                -- You can configure highlights by doing something like:
-                vim.cmd.hi 'Comment gui=italic'
-
-                vim.cmd.hi 'Constant gui=bold'
-                vim.cmd.hi 'String gui=italic'
-                vim.cmd.hi 'Character gui=bold'
-                vim.cmd.hi 'Number gui=none'
-                vim.cmd.hi 'Boolean gui=bold'
-
-                vim.cmd.hi 'Statement gui=none'
-                vim.cmd.hi 'Conditional gui=bold'
-                vim.cmd.hi 'Repeat gui=bold'
-                vim.cmd.hi 'Label gui=bold'
-                vim.cmd.hi 'Function gui=bold,italic'
-                vim.cmd.hi 'Error gui=underline'
-            end,
-        },
-        {
             'ibhagwan/fzf-lua',
-            dependencies = { "nvim-mini/mini.icons" },
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
             cmd = { 'FzfLua' },
             keys = {
                 {
@@ -472,22 +444,16 @@ require("lazy").setup({
         },
         {
             'nvim-lualine/lualine.nvim',
-            dependencies = { 'nvim-mini/mini.icons' },
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
             priority = 999,
             lazy = false,
-            config = function()
-                require("mini.icons").setup()
-                require("mini.icons").mock_nvim_web_devicons()
-
-                require('lualine').setup {
-                    options = {
-                        theme = 'catppuccin',
-                        icons_enabled = true,
-                        component_separators = { left = '|', right = '|' },
-                        section_separators = { left = '', right = '' },
-                    },
-                }
-            end,
+            opts = {
+                options = {
+                    theme = 'catppuccin',
+                    component_separators = { left = '|', right = '|' },
+                    section_separators = { left = '', right = '' },
+                },
+            },
         },
         {
             "nvim-treesitter/nvim-treesitter",
@@ -503,7 +469,6 @@ require("lazy").setup({
                     'bibtex',
                     'c',
                     'cpp',
-                    'diff',
                     'dockerfile',
                     'fish',
                     'go',
@@ -514,7 +479,6 @@ require("lazy").setup({
                     'latex',
                     'javascript',
                     'lua',
-                    'luadoc',
                     'make',
                     'markdown',
                     'markdown_inline',
@@ -571,7 +535,7 @@ require("lazy").setup({
                         require('conform').format { async = true, lsp_format = 'fallback' }
                     end,
                     mode = '',
-                    desc = '[F]ormat buffer',
+                    desc = 'Format buffer',
                 },
             },
             opts = {
@@ -617,19 +581,19 @@ require("lazy").setup({
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "habamax" } },
+    install = { colorscheme = { "catppuccin" } },
     -- automatically check for plugin updates
     checker = { enabled = true },
 })
 
 -- needs to be after lazy to ensure lazy is installed
-vim.api.nvim_create_autocmd(
-    "VimEnter", {
-        callback = function()
-            require("lazy").update({ show = false })
-        end
-    }
-)
+-- vim.api.nvim_create_autocmd(
+--     "VimEnter", {
+--         callback = function()
+--             require("lazy").update({ show = false })
+--         end
+--     }
+-- )
 
 -- folding autocommand
 -- needs to be after lazy to ensure treesitter is installed
@@ -646,3 +610,26 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         end
     end,
 })
+
+-- --------------------------------
+-- Color theme
+-- --------------------------------
+
+
+vim.cmd.colorscheme 'catppuccin'
+
+-- :h highlight-groups
+vim.cmd.hi 'Comment gui=italic'
+
+vim.cmd.hi 'Constant gui=bold'
+vim.cmd.hi 'String gui=italic'
+vim.cmd.hi 'Character gui=bold'
+vim.cmd.hi 'Number gui=none'
+vim.cmd.hi 'Boolean gui=bold'
+
+vim.cmd.hi 'Statement gui=none'
+vim.cmd.hi 'Conditional gui=bold'
+vim.cmd.hi 'Repeat gui=bold'
+vim.cmd.hi 'Label gui=bold'
+vim.cmd.hi 'Function gui=bold,italic'
+vim.cmd.hi 'Error gui=underline'
