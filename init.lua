@@ -143,23 +143,18 @@ vim.api.nvim_create_autocmd("FileType", {
             "b:1.",                             -- ordered list
         }
 
-        -- second-enter-clears-bullet
+        -- second enter clears bullet
         vim.keymap.set("i", "<CR>", function()
             local line = vim.api.nvim_get_current_line()
-            local col = vim.fn.col(".")
-            local before_cursor = line:sub(1, col - 1)
 
-            -- Muster einer leeren Bullet-Zeile erkennen
-            if before_cursor:match("^%s*[-*] %s*$")
-                or before_cursor:match("^%s*[-*]%s*$")
-                or before_cursor:match("^%s*%d+%. %s*$")
+            if line:match("^%s*[-*]%s*$")
+                or line:match("^%s*%- %[[ x]%]%s*$")
+                or line:match("^%s*1%.%s*$")
             then
-                -- Bullet aus der aktuellen Zeile löschen
                 return "<Esc>0C"
+            else
+                return "<CR>"
             end
-
-            -- normales Enter
-            return "<CR>"
         end, { buffer = true, expr = true })
     end,
 })
@@ -186,8 +181,25 @@ vim.keymap.set('n', '<leader>,', function()
     end
 end, { desc = 'toggle spell checking' })
 
--- Netrw short cut
--- vim.keymap.set('n', '<leader>n', "<cmd>Explore<CR>", { desc = 'Open Netrw' })
+-- second enter clears comment
+vim.keymap.set("i", "<CR>", function()
+    local line = vim.api.nvim_get_current_line()
+
+    -- detect the comment leader for this filetype
+    local cs = vim.bo.commentstring -- for lua "-- %s"
+    local leader = cs:match("^(.*)%%s")
+    if not leader then return "<CR>" end
+
+    -- escape Lua pattern characters in the comment leader
+    local esc = leader:gsub("([^%w])", "%%%1")
+
+    -- match a completely empty comment
+    if line:match("^%s*" .. esc .. "%s*$") then
+        return "<Esc>0C"
+    else
+        return "<CR>"
+    end
+end, { buffer = true, expr = true })
 
 -- Oil short cut
 vim.keymap.set("n", "<leader>n", "<cmd>Oil<CR>", { desc = "Open Oil file explorer" })
