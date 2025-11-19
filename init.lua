@@ -152,7 +152,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- clipboard keybinds
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>y', '"+y')
-vim.keymap.set({ 'n', 'x', 'v' }, '<leader>p', '"+y')
+vim.keymap.set({ 'n', 'x', 'v' }, '<leader>p', '"+p')
 
 -- Enable spellchecking
 vim.keymap.set('n', '<leader>,', function()
