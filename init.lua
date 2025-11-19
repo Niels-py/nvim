@@ -21,7 +21,7 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -308,7 +308,6 @@ require("lazy").setup({
                         -- Diagnostics
                         map('<leader>d', vim.diagnostic.open_float, 'show line diagnostics')
                         map('<leader>q', vim.diagnostic.setloclist, 'open quickfix list')
-
 
                         -- Inlay Hints
                         if client and client:supports_method 'textDocument/inlayHint' then
