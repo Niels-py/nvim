@@ -190,6 +190,7 @@ require("lazy").setup({
         { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
         {
             'nvim-mini/mini.nvim',
+            event = 'VeryLazy',
             config = function()
                 require('mini.ai').setup()
                 require('mini.surround').setup()
@@ -374,19 +375,6 @@ require("lazy").setup({
             },
         },
         {
-            'nvim-lualine/lualine.nvim',
-            dependencies = { 'nvim-tree/nvim-web-devicons' },
-            priority = 999,
-            lazy = false,
-            opts = {
-                options = {
-                    theme = 'catppuccin',
-                    component_separators = { left = '|', right = '|' },
-                    section_separators = { left = '', right = '' },
-                },
-            },
-        },
-        {
             "nvim-treesitter/nvim-treesitter",
             branch = 'master',
             lazy = false,
@@ -532,3 +520,5 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.cmd.colorscheme 'catppuccin'
+
+require 'statusline'
