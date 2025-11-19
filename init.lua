@@ -2,9 +2,6 @@
 -- Options
 -- --------------------------------
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -16,22 +13,15 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'vi'
 
 -- indent
-local tabw = 4
-vim.opt.tabstop = tabw
-vim.opt.softtabstop = tabw
-vim.opt.shiftwidth = tabw
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 
 -- don't show the mode, since it's already in the status line
 vim.opt.showmode = false
-
--- sync clipboard between os and neovim.
---  schedule the setting after `uienter` because it can increase startup-time.
-vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
-end)
 
 -- enable break indent
 -- when wrapping lines, they will be indented
@@ -102,8 +92,6 @@ vim.g.loaded_node_provider = 0
 -- --------------------------------
 
 -- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
@@ -111,14 +99,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.hl.on_yank { higroup = 'Visual', timeout = 250 }
     end,
 })
-
--- Spell-checking in specific FileTypes by default
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = { "html", "markdown", "text" },
---     callback = function()
---         vim.opt_local.spell = true
---     end,
--- })
 
 -- not incsearch preview window so that substitutions in big files are not laggy
 vim.api.nvim_create_autocmd("BufReadPre", {
@@ -169,6 +149,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- clipboard keybinds
+vim.keymap.set({ 'n', 'x', 'v' }, '<leader>y', '"+y')
+vim.keymap.set({ 'n', 'x', 'v' }, '<leader>p', '"+y')
 
 -- Enable spellchecking
 vim.keymap.set('n', '<leader>,', function()
@@ -228,8 +212,10 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        'tpope/vim-sleuth', -- automatically adjust tabwidth for different files
+        'nmac427/guess-indent.nvim',
         { 'folke/which-key.nvim',          event = 'VeryLazy' },
+        { 'saghen/blink.indent',           opts = { scope = { enabled = false } } },
+        { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
         {
             'catppuccin/nvim',
             name = 'catppuccin',
@@ -240,8 +226,6 @@ require("lazy").setup({
                 auto_integrations = true,
             }
         },
-        { 'saghen/blink.indent',           opts = { scope = { enabled = false } } },
-        { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
         {
             'nvim-mini/mini.nvim',
             config = function()
@@ -279,12 +263,11 @@ require("lazy").setup({
             opts = {},
             ft = { 'markdown' },
             keys = {
-                { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+                { "<leader>i", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
             },
         },
         {
             'saghen/blink.cmp',
-            -- optional: provides snippets for the snippet source
             dependencies = { 'rafamadriz/friendly-snippets' },
             version = '1.*',
             opts = {
@@ -342,10 +325,6 @@ require("lazy").setup({
                 }
             },
             config = function()
-                --  This function gets run when an LSP attaches to a particular buffer.
-                --    That is to say, every time a new file is opened that is associated with
-                --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-                --    function will be executed to configure the current buffer
                 vim.api.nvim_create_autocmd('LspAttach', {
                     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
                     callback = function(args)
@@ -430,17 +409,6 @@ require("lazy").setup({
                     desc = 'fuzzy grep search in cwd',
                 },
             },
-            config = function()
-                require('fzf-lua').setup {
-                    winopts = {
-                        height = 0.8,
-                        width = 0.9,
-                    },
-                    files = {
-                        previewer = true,
-                    },
-                }
-            end,
         },
         {
             'nvim-lualine/lualine.nvim',
@@ -556,48 +524,37 @@ require("lazy").setup({
                 -- lua    = lua_ls
 
                 formatters_by_ft = {
-                    haskell = { "ormolu" },
+                    haskell         = { "ormolu" },
 
-                    markdown = { "prettierd" },
-                    javascript = { "prettierd" },
+                    markdown        = { "prettierd" },
+                    javascript      = { "prettierd" },
                     javascriptreact = { "prettierd" },
-                    typescript = { "prettierd" },
+                    typescript      = { "prettierd" },
                     typescriptreact = { "prettierd" },
-                    css = { "prettierd" },
-                    scss = { "prettierd" },
-                    less = { "prettierd" },
-                    html = { "prettierd" },
-                    json = { "prettierd" },
-                    jsonc = { "prettierd" },
-                    yaml = { "prettierd" },
-                    mdx = { "prettierd" },
-                    graphql = { "prettierd" },
-                    vue = { "prettierd" },
-                    svelte = { "prettierd" },
-                    astro = { "prettierd" },
+                    css             = { "prettierd" },
+                    scss            = { "prettierd" },
+                    less            = { "prettierd" },
+                    html            = { "prettierd" },
+                    json            = { "prettierd" },
+                    jsonc           = { "prettierd" },
+                    yaml            = { "prettierd" },
+                    mdx             = { "prettierd" },
+                    graphql         = { "prettierd" },
+                    vue             = { "prettierd" },
+                    svelte          = { "prettierd" },
+                    astro           = { "prettierd" },
                 },
             },
         },
     },
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "catppuccin" } },
     -- automatically check for plugin updates
     checker = { enabled = true },
 })
 
--- needs to be after lazy to ensure lazy is installed
--- vim.api.nvim_create_autocmd(
---     "VimEnter", {
---         callback = function()
---             require("lazy").update({ show = false })
---         end
---     }
--- )
-
 -- folding autocommand
 -- needs to be after lazy to ensure treesitter is installed
 vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = "*",
     callback = function()
         -- check if treesitter has parser
         if require("nvim-treesitter.parsers").has_parser() then
