@@ -1,18 +1,9 @@
--- --------------------------------
--- Options
--- --------------------------------
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- relative linenumbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- mouse only for [v]isual mode and [i]nsert mode
-vim.opt.mouse = 'vi'
-
--- indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -23,25 +14,22 @@ vim.opt.autoindent = true
 -- don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- enable break indent
 -- when wrapping lines, they will be indented
 vim.opt.breakindent = true
 
--- no swapfiles and undotree gets access to old changes in undodir
 vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- case-insensitive searching unless \c or one or more capital letters in the search term
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.inccommand = 'split'
 
 -- files may have @ in ther name
 vim.opt.isfname:append '@-@'
 
--- keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
 -- decrease update time
@@ -50,38 +38,22 @@ vim.opt.updatetime = 250
 -- decrease mapped sequence wait time
 vim.opt.timeoutlen = 500
 
--- configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- preview substitutions live, as you type!
--- note: noch nicht 100% überzeugt von dem Zeug
---       da es auf großen Dateien etwas laggy sein kann
-vim.opt.inccommand = 'split'
-
--- show which line your cursor is on
 vim.opt.cursorline = true
-
--- make a visible column at line 80
 vim.opt.colorcolumn = '80'
 
--- minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 8
-
--- folding
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.g.markdown_folding = 1
 
--- spell
 vim.opt.spelllang = { 'de_20', 'en_us' }
 vim.opt.spellsuggest = 'fast'
 
--- provider settings
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
@@ -217,25 +189,6 @@ require("lazy").setup({
         { 'saghen/blink.indent',           opts = { scope = { enabled = false } } },
         { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
         {
-            'catppuccin/nvim',
-            name = 'catppuccin',
-            priority = 1000,
-            opts = {
-                flavour = 'mocha',
-                transparent_background = true,
-                default_integrations = false,
-                integrations = {
-                    blink_cmp = { style = 'bordered' },
-                    blink_indent = true,
-                    fidget = true,
-                    fzf = true,
-                    lualine = true,
-                    mini = { enable = true },
-                    which_key = true,
-                },
-            }
-        },
-        {
             'nvim-mini/mini.nvim',
             config = function()
                 require('mini.ai').setup()
@@ -369,6 +322,7 @@ require("lazy").setup({
                     notification = {
                         window = {
                             winblend = 0,
+                            max_width = 0.3,
                         },
                     },
                 }
@@ -577,25 +531,4 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
--- --------------------------------
--- Color theme
--- --------------------------------
-
-
 vim.cmd.colorscheme 'catppuccin'
-
--- :h highlight-groups
-vim.cmd.hi 'Comment gui=italic'
-
-vim.cmd.hi 'Constant gui=bold'
-vim.cmd.hi 'String gui=italic'
-vim.cmd.hi 'Character gui=bold'
-vim.cmd.hi 'Number gui=none'
-vim.cmd.hi 'Boolean gui=bold'
-
-vim.cmd.hi 'Statement gui=none'
-vim.cmd.hi 'Conditional gui=bold'
-vim.cmd.hi 'Repeat gui=bold'
-vim.cmd.hi 'Label gui=bold'
-vim.cmd.hi 'Function gui=bold,italic'
-vim.cmd.hi 'Error gui=underline'
