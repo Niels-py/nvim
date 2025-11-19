@@ -223,7 +223,16 @@ require("lazy").setup({
             opts = {
                 flavour = 'mocha',
                 transparent_background = true,
-                auto_integrations = true,
+                default_integrations = false,
+                integrations = {
+                    blink_cmp = { style = 'bordered' },
+                    blink_indent = true,
+                    fidget = true,
+                    fzf = true,
+                    lualine = true,
+                    mini = { enable = true },
+                    which_key = true,
+                },
             }
         },
         {
