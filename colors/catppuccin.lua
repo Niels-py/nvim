@@ -1,124 +1,153 @@
-vim.cmd.hi 'Normal guisp=NONE guifg=#CDD6F4 guibg=#1E1E2E gui=NONE cterm=NONE'
-vim.cmd.hi 'Visual guisp=NONE guifg=NONE guibg=#45475A gui=bold cterm=bold'
-vim.cmd.hi 'Conceal guisp=NONE guifg=#7F849C guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'ColorColumn guisp=NONE guifg=NONE guibg=#313244 gui=NONE cterm=NONE'
-vim.cmd.hi 'Cursor guisp=NONE guifg=#1E1E2E guibg=#F5E0DC gui=NONE cterm=NONE'
-vim.cmd.hi 'lCursor guisp=NONE guifg=#1E1E2E guibg=#F5E0DC gui=NONE cterm=NONE'
-vim.cmd.hi 'CursorIM guisp=NONE guifg=#1E1E2E guibg=#F5E0DC gui=NONE cterm=NONE'
-vim.cmd.hi 'CursorColumn guisp=NONE guifg=NONE guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'CursorLine guisp=NONE guifg=NONE guibg=#313244 gui=NONE cterm=NONE'
-vim.cmd.hi 'Directory guisp=NONE guifg=#89B4FA guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'DiffAdd guisp=NONE guifg=#1E1E2E guibg=#A6E3A1 gui=NONE cterm=NONE'
-vim.cmd.hi 'DiffChange guisp=NONE guifg=#1E1E2E guibg=#F9E2AF gui=NONE cterm=NONE'
-vim.cmd.hi 'DiffDelete guisp=NONE guifg=#1E1E2E guibg=#F38BA8 gui=NONE cterm=NONE'
-vim.cmd.hi 'DiffText guisp=NONE guifg=#1E1E2E guibg=#89B4FA gui=NONE cterm=NONE'
-vim.cmd.hi 'EndOfBuffer guisp=NONE guifg=NONE guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'ErrorMsg guisp=NONE guifg=#F38BA8 guibg=NONE gui=bolditalic cterm=bold,italic'
-vim.cmd.hi 'VertSplit guisp=NONE guifg=#11111B guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Folded guisp=NONE guifg=#89B4FA guibg=#45475A gui=NONE cterm=NONE'
-vim.cmd.hi 'FoldColumn guisp=NONE guifg=#6C7086 guibg=#1E1E2E gui=NONE cterm=NONE'
-vim.cmd.hi 'SignColumn guisp=NONE guifg=#45475A guibg=#1E1E2E gui=NONE cterm=NONE'
-vim.cmd.hi 'IncSearch guisp=NONE guifg=#45475A guibg=#F5C2E7 gui=NONE cterm=NONE'
-vim.cmd.hi 'CurSearch guisp=NONE guifg=#45475A guibg=#CBA6F7 gui=NONE cterm=NONE'
-vim.cmd.hi 'CursorLineNR guisp=NONE guifg=#B4BEFE guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'LineNr guisp=NONE guifg=#45475A guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'MatchParen guisp=NONE guifg=#FAB387 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'ModeMsg guisp=NONE guifg=#CDD6F4 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'MoreMsg guisp=NONE guifg=#89B4FA guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'NonText guisp=NONE guifg=#6C7086 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Pmenu guisp=NONE guifg=#9399B2 guibg=#313244 gui=NONE cterm=NONE'
-vim.cmd.hi 'PmenuSel guisp=NONE guifg=#CDD6F4 guibg=#45475A gui=bold cterm=bold'
-vim.cmd.hi 'PmenuSbar guisp=NONE guifg=NONE guibg=#45475A gui=NONE cterm=NONE'
-vim.cmd.hi 'PmenuThumb guisp=NONE guifg=NONE guibg=#6C7086 gui=NONE cterm=NONE'
-vim.cmd.hi 'Question guisp=NONE guifg=#89B4FA guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'QuickFixLine guisp=NONE guifg=NONE guibg=#45475A gui=bold cterm=bold'
-vim.cmd.hi 'Search guisp=NONE guifg=#F5C2E7 guibg=#45475A gui=bold cterm=bold'
-vim.cmd.hi 'SpecialKey guisp=NONE guifg=#A6ADC8 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'SpellBad guisp=NONE guifg=#1E1E2E guibg=#F38BA8 gui=NONE cterm=NONE'
-vim.cmd.hi 'SpellCap guisp=NONE guifg=#1E1E2E guibg=#F9E2AF gui=NONE cterm=NONE'
-vim.cmd.hi 'SpellLocal guisp=NONE guifg=#1E1E2E guibg=#89B4FA gui=NONE cterm=NONE'
-vim.cmd.hi 'SpellRare guisp=NONE guifg=#1E1E2E guibg=#A6E3A1 gui=NONE cterm=NONE'
-vim.cmd.hi 'StatusLine guisp=NONE guifg=#CDD6F4 guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'StatusLineNC guisp=NONE guifg=#45475A guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'StatusLineTerm guisp=NONE guifg=#CDD6F4 guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'StatusLineTermNC guisp=NONE guifg=#45475A guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'TabLine guisp=NONE guifg=#45475A guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'TabLineFill guisp=NONE guifg=NONE guibg=#181825 gui=NONE cterm=NONE'
-vim.cmd.hi 'TabLineSel guisp=NONE guifg=#A6E3A1 guibg=#45475A gui=NONE cterm=NONE'
-vim.cmd.hi 'Title guisp=NONE guifg=#89B4FA guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'VisualNOS guisp=NONE guifg=NONE guibg=#45475A gui=bold cterm=bold'
-vim.cmd.hi 'WarningMsg guisp=NONE guifg=#F9E2AF guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'WildMenu guisp=NONE guifg=NONE guibg=#6C7086 gui=NONE cterm=NONE'
-vim.cmd.hi 'Comment guisp=NONE guifg=#6C7086 guibg=NONE gui=italic cterm=italic'
-vim.cmd.hi 'Constant guisp=NONE guifg=#FAB387 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Identifier guisp=NONE guifg=#F2CDCD guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Statement guisp=NONE guifg=#CBA6F7 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'PreProc guisp=NONE guifg=#F5C2E7 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Type guisp=NONE guifg=#89B4FA guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Special guisp=NONE guifg=#F5C2E7 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Underlined guisp=NONE guifg=#CDD6F4 guibg=#1E1E2E gui=underline cterm=underline'
-vim.cmd.hi 'Error guisp=NONE guifg=#F38BA8 guibg=NONE gui=underline cterm=underline'
-vim.cmd.hi 'Todo guisp=NONE guifg=#1E1E2E guibg=#F2CDCD gui=bold cterm=bold'
+local C = {
+    rosewater = "#f5e0dc",
+    flamingo = "#f2cdcd",
+    pink = "#f5c2e7",
+    mauve = "#cba6f7",
+    red = "#f38ba8",
+    maroon = "#eba0ac",
+    peach = "#fab387",
+    yellow = "#f9e2af",
+    green = "#a6e3a1",
+    teal = "#94e2d5",
+    sky = "#89dceb",
+    sapphire = "#74c7ec",
+    blue = "#89b4fa",
+    lavender = "#b4befe",
+    text = "#cdd6f4",
+    subtext1 = "#bac2de",
+    subtext0 = "#a6adc8",
+    overlay2 = "#9399b2",
+    overlay1 = "#7f849c",
+    overlay0 = "#6c7086",
+    surface2 = "#585b70",
+    surface1 = "#45475a",
+    surface0 = "#313244",
+    base = "#1e1e2e",
+    mantle = "#181825",
+    crust = "#11111b",
+}
 
-vim.cmd.hi 'String guisp=NONE guifg=#A6E3A1 guibg=NONE gui=italic cterm=italic'
-vim.cmd.hi 'Character guisp=NONE guifg=#94E2D5 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Number guisp=NONE guifg=#FAB387 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Boolean guisp=NONE guifg=#FAB387 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Float guisp=NONE guifg=#FAB387 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Function guisp=NONE guifg=#89B4FA guibg=NONE gui=italic cterm=italic'
-vim.cmd.hi 'Conditional guisp=NONE guifg=#F38BA8 guibg=NONE gui=bolditalic cterm=bold,italic'
-vim.cmd.hi 'Repeat guisp=NONE guifg=#F38BA8 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Label guisp=NONE guifg=#FAB387 guibg=NONE gui=bold cterm=bold'
-vim.cmd.hi 'Operator guisp=NONE guifg=#89DCEB guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Keyword guisp=NONE guifg=#F5C2E7 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Include guisp=NONE guifg=#F5C2E7 guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'StorageClass guisp=NONE guifg=#F9E2AF guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Structure guisp=NONE guifg=#F9E2AF guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'Typedef guisp=NONE guifg=#F9E2AF guibg=NONE gui=NONE cterm=NONE'
-vim.cmd.hi 'debugPC guisp=NONE guifg=NONE guibg=#11111B gui=NONE cterm=NONE'
-vim.cmd.hi 'debugBreakpoint guisp=NONE guifg=#6C7086 guibg=#1E1E2E gui=NONE cterm=NONE'
+local function hl(group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
+end
+
+hl("Normal", { fg = C.text, bg = C.base })
+hl("Visual", { bg = C.surface1, bold = true })
+hl("Conceal", { fg = C.overlay1 })
+hl("ColorColumn", { bg = C.surface0 })
+hl("Cursor", { fg = C.base, bg = C.rosewater })
+hl("lCursor", { fg = C.base, bg = C.rosewater })
+hl("CursorIM", { fg = C.base, bg = C.rosewater })
+hl("CursorColumn", { bg = C.mantle })
+hl("CursorLine", { bg = C.surface0 })
+hl("Directory", { fg = C.blue })
+hl("DiffAdd", { fg = C.base, bg = C.green })
+hl("DiffChange", { fg = C.base, bg = C.yellow })
+hl("DiffDelete", { fg = C.base, bg = C.red })
+hl("DiffText", { fg = C.base, bg = C.blue })
+hl("EndOfBuffer", {})
+hl("ErrorMsg", { fg = C.red, bold = true, italic = true })
+hl("VertSplit", { fg = C.crust })
+hl("Folded", { fg = C.blue, bg = C.surface1 })
+hl("FoldColumn", { fg = C.overlay0, bg = C.base })
+hl("SignColumn", { fg = C.surface1, bg = C.base })
+hl("IncSearch", { fg = C.surface1, bg = C.pink })
+hl("CurSearch", { fg = C.surface1, bg = C.mauve })
+hl("CursorLineNR", { fg = C.lavender })
+hl("LineNr", { fg = C.surface1 })
+hl("MatchParen", { fg = C.peach, bold = true })
+hl("ModeMsg", { fg = C.text, bold = true })
+hl("MoreMsg", { fg = C.blue })
+hl("NonText", { fg = C.overlay0 })
+hl("Pmenu", { fg = C.overlay2, bg = C.surface0 })
+hl("PmenuSel", { fg = C.text, bg = C.surface1, bold = true })
+hl("PmenuSbar", { bg = C.surface1 })
+hl("PmenuThumb", { bg = C.overlay0 })
+hl("Question", { fg = C.blue })
+hl("QuickFixLine", { bg = C.surface1, bold = true })
+hl("Search", { fg = C.pink, bg = C.surface1, bold = true })
+hl("SpecialKey", { fg = C.subtext0 })
+hl("SpellBad", { fg = C.base, bg = C.red })
+hl("SpellCap", { fg = C.base, bg = C.yellow })
+hl("SpellLocal", { fg = C.base, bg = C.blue })
+hl("SpellRare", { fg = C.base, bg = C.green })
+hl("StatusLine", { fg = C.text, bg = C.mantle })
+hl("StatusLineNC", { fg = C.surface1, bg = C.mantle })
+hl("StatusLineTerm", { fg = C.text, bg = C.mantle })
+hl("StatusLineTermNC", { fg = C.surface1, bg = C.mantle })
+hl("TabLine", { fg = C.surface1, bg = C.mantle })
+hl("TabLineFill", { bg = C.mantle })
+hl("TabLineSel", { fg = C.green, bg = C.surface1 })
+hl("Title", { fg = C.blue, bold = true })
+hl("VisualNOS", { bg = C.surface1, bold = true })
+hl("WarningMsg", { fg = C.yellow })
+hl("WildMenu", { bg = C.overlay0 })
+hl("Comment", { fg = C.overlay0, italic = true })
+hl("Constant", { fg = C.peach, bold = true })
+hl("Identifier", { fg = C.flamingo })
+hl("Statement", { fg = C.mauve })
+hl("PreProc", { fg = C.pink })
+hl("Type", { fg = C.blue })
+hl("Special", { fg = C.pink })
+hl("Underlined", { fg = C.text, bg = C.base, underline = true })
+hl("Error", { fg = C.red, underline = true })
+hl("Todo", { fg = C.base, bg = C.flamingo, bold = true })
+
+hl("String", { fg = C.green, italic = true })
+hl("Character", { fg = C.teal, bold = true })
+hl("Number", { fg = C.peach, bold = true })
+hl("Boolean", { fg = C.peach, bold = true })
+hl("Float", { fg = C.peach })
+hl("Function", { fg = C.blue, italic = true })
+hl("Conditional", { fg = C.red, bold = true, italic = true })
+hl("Repeat", { fg = C.red, bold = true })
+hl("Label", { fg = C.peach, bold = true })
+hl("Operator", { fg = C.sky })
+hl("Keyword", { fg = C.pink })
+hl("Include", { fg = C.pink })
+hl("StorageClass", { fg = C.yellow })
+hl("Structure", { fg = C.yellow })
+hl("Typedef", { fg = C.yellow })
+hl("debugPC", { bg = C.crust })
+hl("debugBreakpoint", { fg = C.overlay0, bg = C.base })
 
 
 -- PLUGINS
 
 -- blink.indent
-vim.cmd.hi 'BlinkIndent guifg=#313244'
-vim.cmd.hi 'BlinkIndentScope guifg=#9399B2'
+hl("BlinkIndent", { fg = C.surface0 })
+hl("BlinkIndentScope", { fg = C.overlay2 })
 
 -- blink.cmp (icons)
-vim.cmd.hi 'BlinkCmpKindText guifg=#A6E3A1'
-vim.cmd.hi 'BlinkCmpKindMethod guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindFunction guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindConstructor guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindField guifg=#A6E3A1'
-vim.cmd.hi 'BlinkCmpKindVariable guifg=#F2CDCD'
-vim.cmd.hi 'BlinkCmpKindClass guifg=#F9E2Af'
-vim.cmd.hi 'BlinkCmpKindInterface guifg=#F9E2Af'
-vim.cmd.hi 'BlinkCmpKindModule guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindProperty guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindUnit guifg=#A6E3A1'
-vim.cmd.hi 'BlinkCmpKindValue guifg=#FAB387'
-vim.cmd.hi 'BlinkCmpKindEnum guifg=#F9E2Af'
-vim.cmd.hi 'BlinkCmpKindKeyword guifg=#CBA6F7'
-vim.cmd.hi 'BlinkCmpKindSnippet guifg=#F2CDCD'
-vim.cmd.hi 'BlinkCmpKindColor guifg=#F38BA8'
-vim.cmd.hi 'BlinkCmpKindFile guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindReference guifg=#F38BA8'
-vim.cmd.hi 'BlinkCmpKindFolder guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindEnumMember guifg=#94e2d5'
-vim.cmd.hi 'BlinkCmpKindConstant guifg=#FAB387'
-vim.cmd.hi 'BlinkCmpKindStruct guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindEvent guifg=#89B4FA'
-vim.cmd.hi 'BlinkCmpKindOperator guifg=#89DCEB'
-vim.cmd.hi 'BlinkCmpKindTypeParameter guifg=#EBA0AC'
-vim.cmd.hi 'BlinkCmpKindCopilot guifg=#94E2D5'
+hl("BlinkCmpKindText", { fg = C.green })
+hl("BlinkCmpKindMethod", { fg = C.blue })
+hl("BlinkCmpKindFunction", { fg = C.blue })
+hl("BlinkCmpKindConstructor", { fg = C.blue })
+hl("BlinkCmpKindField", { fg = C.green })
+hl("BlinkCmpKindVariable", { fg = C.flamingo })
+hl("BlinkCmpKindClass", { fg = C.yellow })
+hl("BlinkCmpKindInterface", { fg = C.yellow })
+hl("BlinkCmpKindModule", { fg = C.blue })
+hl("BlinkCmpKindProperty", { fg = C.blue })
+hl("BlinkCmpKindUnit", { fg = C.green })
+hl("BlinkCmpKindValue", { fg = C.peach })
+hl("BlinkCmpKindEnum", { fg = C.yellow })
+hl("BlinkCmpKindKeyword", { fg = C.mauve })
+hl("BlinkCmpKindSnippet", { fg = C.flamingo })
+hl("BlinkCmpKindColor", { fg = C.red })
+hl("BlinkCmpKindFile", { fg = C.blue })
+hl("BlinkCmpKindReference", { fg = C.red })
+hl("BlinkCmpKindFolder", { fg = C.blue })
+hl("BlinkCmpKindEnumMember", { fg = C.teal })
+hl("BlinkCmpKindConstant", { fg = C.peach })
+hl("BlinkCmpKindStruct", { fg = C.blue })
+hl("BlinkCmpKindEvent", { fg = C.blue })
+hl("BlinkCmpKindOperator", { fg = C.sky })
+hl("BlinkCmpKindTypeParameter", { fg = C.maroon })
+hl("BlinkCmpKindCopilot", { fg = C.teal })
 
 -- mini diff
 
-vim.cmd.hi 'MiniDiffSignAdd guifg=#A6E3A1'
-vim.cmd.hi 'MiniDiffSignChange guifg=#F9E2AF'
-vim.cmd.hi 'MiniDiffSignDelete guifg=#F38BA8'
-vim.cmd.hi 'link MiniDiffOverAdd DiffAdd'
-vim.cmd.hi 'link MiniDiffOverChange DiffText'
-vim.cmd.hi 'link MiniDiffOverContext DiffChange'
-vim.cmd.hi 'link MiniDiffOverDelete DiffDelete'
+hl("MiniDiffSignAdd", { fg = C.green })
+hl("MiniDiffSignChange", { fg = C.yellow })
+hl("MiniDiffSignDelete", { fg = C.red })
