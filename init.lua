@@ -4,6 +4,8 @@ vim.g.maplocalleader = "\\"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.scrolloff = 8
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -193,7 +195,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        'nmac427/guess-indent.nvim',
+        { 'nmac427/guess-indent.nvim',     opts = {} },
         { 'folke/which-key.nvim',          event = 'VeryLazy' },
         { 'saghen/blink.indent',           opts = { scope = { enabled = false } } },
         { 'brianhuster/live-preview.nvim', ft = { "markdown", "asciidoc", "svg", "html" } },
@@ -351,6 +353,9 @@ require("lazy").setup({
                     'hls',
                     'rust_analyzer',
                     'fish_lsp',
+                    'html',
+                    'cssls',
+                    'jsonls',
                 })
             end
         },

@@ -89,7 +89,7 @@ hl("Statement", { fg = C.mauve })
 hl("PreProc", { fg = C.pink })
 hl("Type", { fg = C.blue })
 hl("Special", { fg = C.pink })
-hl("Underlined", { fg = C.text, bg = C.base, underline = true })
+hl("Underlined", { underline = true })
 hl("Error", { fg = C.red, underline = true })
 hl("Todo", { fg = C.base, bg = C.flamingo, bold = true })
 
