@@ -86,10 +86,19 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown" },
     callback = function()
-        vim.opt.tabstop = 2
-        vim.opt.softtabstop = 2
-        vim.opt.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
     end
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*",
+    callback = function(args)
+        if vim.bo[args.buf].buftype == "" and vim.fn.exists(":GuessIndent") == 2 then
+            vim.cmd("silent GuessIndent")
+        end
+    end,
 })
 
 -- bullets
@@ -177,7 +186,7 @@ vim.keymap.set("n", "<leader>n", "<cmd>Oil<CR>", { desc = "Open Oil file explore
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
     if vim.v.shell_error ~= 0 then
@@ -521,10 +530,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "*",
     callback = function()
         if require("nvim-treesitter.parsers").has_parser() then
-            vim.opt.foldmethod = "expr"
-            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+            vim.opt_local.foldmethod = "expr"
+            vim.opt_local.foldexpr = vim.treesitter.foldexpr()
         else
-            vim.opt.foldmethod = "syntax"
+            vim.opt_local.foldmethod = "syntax"
         end
     end,
 })
