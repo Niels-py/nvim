@@ -397,75 +397,6 @@ require("lazy").setup({
             },
         },
         {
-            "nvim-treesitter/nvim-treesitter",
-            branch = 'master',
-            lazy = false,
-            build = ":TSUpdate",
-            dependencies = {
-                'nvim-treesitter/nvim-treesitter-textobjects',
-            },
-            opts = {
-                ensure_installed = {
-                    'bash',
-                    'bibtex',
-                    'c',
-                    'cpp',
-                    'dockerfile',
-                    'fish',
-                    'go',
-                    'html',
-                    'java',
-                    'json',
-                    'jsonc',
-                    'latex',
-                    'javascript',
-                    'lua',
-                    'make',
-                    'markdown',
-                    'markdown_inline',
-                    'python',
-                    'query',
-                    'rust',
-                    'toml',
-                    'vim',
-                    'vimdoc',
-                    'yaml',
-                },
-                highlight        = { enable = true },
-                indent           = { enable = true },
-                textobjects      = {
-                    select = {
-                        enable = true,
-                        lookahead = true, -- jump to the next text object
-                        keymaps = {
-                            ["af"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["ac"] = "@class.outer",
-                            ["ic"] = "@class.inner",
-                            ["al"] = "@loop.outer",
-                            ["il"] = "@loop.inner",
-                        },
-                        include_surrounding_whitespace = true,
-                    },
-                    move = {
-                        enable = true,
-                        set_jumps = true,
-                        goto_next_start = {
-                            ["]f"] = "@function.outer",
-                            ["]c"] = "@class.outer",
-                        },
-                        goto_previous_start = {
-                            ["[f"] = "@function.outer",
-                            ["[c"] = "@class.outer",
-                        },
-                    },
-                },
-            },
-            config = function(_, opts)
-                require("nvim-treesitter.configs").setup(opts)
-            end,
-        },
-        {
             'stevearc/conform.nvim',
             event = { 'BufWritePre' },
             cmd = { 'ConformInfo' },
@@ -522,20 +453,6 @@ require("lazy").setup({
     },
     -- automatically check for plugin updates
     checker = { enabled = true },
-})
-
--- folding autocommand
--- needs to be after lazy to ensure treesitter is installed
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = "*",
-    callback = function()
-        if require("nvim-treesitter.parsers").has_parser() then
-            vim.opt_local.foldmethod = "expr"
-            vim.opt_local.foldexpr = vim.treesitter.foldexpr()
-        else
-            vim.opt_local.foldmethod = "syntax"
-        end
-    end,
 })
 
 vim.cmd.colorscheme 'catppuccin'
